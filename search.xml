@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>First Thing First: 404 not fine</title>
+    <url>/2022/11/27/First-Thing-First-404-not-fine/</url>
+    <content><![CDATA[<p>At first, this page is only for testing if the website works. However, when I finished all of settings on this page, I started to think about the problem of testing.</p>
+<p>Why do we need to test things? Or the question is, how do we comfort oursleves after we finish our job? I observed many people’s coding process, and I think they can be divided into 3 categories.</p>
+<ol>
+<li>Cautious Debugger<br>This kind of people try to test every new character they add in the code, even if they add a comment line in the program, they will run the program to test if that line is in the comment mode.</li>
+<li>Functional Tester<br>For this kind, they will only test the functionality of each part, and sometimes they will have bugs of typo or similar problems. If you try to read their code, you can understand the functions and variable clearly. The only problem is I never see this kind of people in reality.</li>
+<li>Confident conqueror<br>The condident conqueror, also known as “Conqueror The XXX”.  The coding level of this group varies a lot. Some of them are like a bug generating machine. If you keep compiling their code everyday, you will definitly become a master of recognizing errors and detecting bugs. In the meanwhile, some of them are like the skynet of The Terminator, and the only thing you need to worry about them is building a killing machine in one day.</li>
+</ol>
+<p>The most interesting thing about this testing process is that I have taken a course about this process, but now the only piece of memory of this course I have, is having hotpot after the exam, and it tastes really good to have it, even in the summer. So, to redeem my memory, I searched “How to “How to test your code formally”. The result really surprised me. In short, you should do either like group1 or group2, but not group3. I think the most possible reason is that none of the people I know, who is good at coding, is working in a huge group, so they don’t need to care about the readability of the code, but only the functionality. </p>
+<p>I think this is enough for “testing”, both for testing all kinds of functions and for this topic. </p>
+]]></content>
+      <categories>
+        <category>Test_categories</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
+        <tag>test2</tag>
+      </tags>
+  </entry>
+</search>

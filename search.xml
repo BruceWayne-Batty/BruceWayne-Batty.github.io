@@ -1,63 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>Fire after Fire</title>
-      <link href="/2022/11/28/Erupting-After-Fire/"/>
-      <url>/2022/11/28/Erupting-After-Fire/</url>
-      
-        <content type="html"><![CDATA[<p>I did not want to comment this news in the first place, but I continuesly received information on the event, so I decided to collect as much information as I can to make a comment on it. In short, the conclusion is that the event has nearly nothing to do with the lockdown, according to the information I collect. I will list the facts I collected which is against each of the reasons of the statement “The fire becomes serious because of the lockdown”.</p><ol><li>Access to the community is blocked due to the epidemic closure<br>The story I read earlier was that because of the epidemic prevention and control, access to the community was blocked, resulting in fire engines having to remove protective panels and wire to enter the community, so rescue operations were delayed, leading to a serious situation. However, I checked the information about this community and posted pictures and complaints online, and all this evidence points to serious problems with the fire protections in this neighbourhood. In order to facilitate the management of vehicle access, a lifting rail has been installed in the middle of the road at the right-hand turn for more than 10 metres into the gates of the district, while ground stakes have been extended. A fence was installed along the steps on the right side of the road to separate the pedestrian access. After the fire engine entered, it had to turn right to reach the building where the incident occurred. The firefighters removed the pedestrian fence and lift rails successively, but the ground piles had to be removed together because of the large turning radius of the vehicle.<br><img src="https://s2.loli.net/2022/11/29/DSXBUInjvTa4OsN.png" alt="Example pircture of the ground piles"></li><li>Residents in the area cannot leave their homes because of lockdown<br>The main basis for this point of view is a screenshot of a WeChat group chat. The picture shows that because of positive cases in the community, the neighborhood committee asked residents to stay at home and not go out. Also, there is another picture shows that the area is one of the high risk areas, which is opposite with the official statement.<br><img src="https://s2.loli.net/2022/11/29/hPakibe5jr4CESJ.png" alt="Screenshots of WeChat group"><br><img src="https://s2.loli.net/2022/11/29/uZzoL7dlUORDvs5.png" alt="Screenshots of high risk area"><br>However, I check the name of the community, and confirmed that the screenshot was for another neiberhood with the same name. As for the high risk area, I checked the screenshot again, the picture is for “last 14 days”, which mean the area had been a high risk area in the last 14 days, but if you check the date of the fire, you will find the place has already become a low risk area 3 days before that. I don’t know why the person who gave this screenshot chose to show the status last 14 days, but I think they did it for some purpose.</li></ol><p>I totally agree with the idea that we are over-protecting from the Covid thing,and I can fully understand the anger of the people of Xinjiang over this event, but I think it is also important to know the truth before getting angry by the fake information. I totally agree with the protest against excessive epidemic prevention, but the real responsible person behind this accident cannot escape punishment because of people’s angry emotions against epidemic prevention. It is essential to check the truth of the information before giving opinions, and don’t let emotions cloud judgments.</p>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>First Thing First: 404 not fine</title>
+    <url>/2022/11/27/First-Thing-First-404-not-fine/</url>
+    <content><![CDATA[<p>At first, this page is only for testing if the website works. However, when I finished all of settings on this page, I started to think about the problem of testing.</p>
+<p>Why do we need to test things? Or the question is, how do we comfort oursleves after we finish our job? I observed many people’s coding process, and I think they can be divided into 3 categories.</p>
+<ol>
+<li>Cautious Debugger<br>This kind of people try to test every new character they add in the code, even if they add a comment line in the program, they will run the program to test if that line is in the comment mode.</li>
+<li>Functional Tester<br>For this kind, they will only test the functionality of each part, and sometimes they will have bugs of typo or similar problems. If you try to read their code, you can understand the functions and variable clearly. The only problem is I never see this kind of people in reality.</li>
+<li>Confident conqueror<br>The condident conqueror, also known as “Conqueror The XXX”.  The coding level of this group varies a lot. Some of them are like a bug generating machine. If you keep compiling their code everyday, you will definitly become a master of recognizing errors and detecting bugs. In the meanwhile, some of them are like the skynet of The Terminator, and the only thing you need to worry about them is building a killing machine in one day.</li>
+</ol>
+<p>The most interesting thing about this testing process is that I have taken a course about this process, but now the only piece of memory of this course I have, is having hotpot after the exam, and it tastes really good to have it, even in the summer. So, to redeem my memory, I searched “How to “How to test your code formally”. The result really surprised me. In short, you should do either like group1 or group2, but not group3. I think the most possible reason is that none of the people I know, who is good at coding, is working in a huge group, so they don’t need to care about the readability of the code, but only the functionality. </p>
+<p>I think this is enough for “testing”, both for testing all kinds of functions and for this topic. </p>
+]]></content>
       <categories>
-          
-          <category> Daily Comment </category>
-          
+        <category>Test_categories</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> News </tag>
-            
-            <tag> Public Opinion </tag>
-            
-            <tag> Emotional&amp;Rational thinking </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>First Thing First: 404 not fine</title>
-      <link href="/2022/11/27/First-Thing-First-404-not-fine/"/>
-      <url>/2022/11/27/First-Thing-First-404-not-fine/</url>
-      
-        <content type="html"><![CDATA[<p>At first, this page is only for testing if the website works. However, when I finished all of settings on this page, I started to think about the problem of testing.</p><p>Why do we need to test things? Or the question is, how do we comfort oursleves after we finish our job? I observed many people’s coding process, and I think they can be divided into 3 categories.</p><ol><li>Cautious Debugger<br>This kind of people try to test every new character they add in the code, even if they add a comment line in the program, they will run the program to test if that line is in the comment mode.</li><li>Functional Tester<br>For this kind, they will only test the functionality of each part, and sometimes they will have bugs of typo or similar problems. If you try to read their code, you can understand the functions and variable clearly. The only problem is I never see this kind of people in reality.</li><li>Confident conqueror<br>The condident conqueror, also known as “Conqueror The XXX”.  The coding level of this group varies a lot. Some of them are like a bug generating machine. If you keep compiling their code everyday, you will definitly become a master of recognizing errors and detecting bugs. In the meanwhile, some of them are like the skynet of The Terminator, and the only thing you need to worry about them is building a killing machine in one day.</li></ol><p>The most interesting thing about this testing process is that I have taken a course about this process, but now the only piece of memory of this course I have, is having hotpot after the exam, and it tastes really good to have it, even in the summer. So, to redeem my memory, I searched “How to “How to test your code formally”. The result really surprised me. In short, you should do either like group1 or group2, but not group3. I think the most possible reason is that none of the people I know, who is good at coding, is working in a huge group, so they don’t need to care about the readability of the code, but only the functionality. </p><p>I think this is enough for “testing”, both for testing all kinds of functions and for this topic. </p>]]></content>
-      
-      
+      <tags>
+        <tag>test</tag>
+        <tag>test2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fire after Fire</title>
+    <url>/2022/11/28/Erupting-After-Fire/</url>
+    <content><![CDATA[<p>I did not want to comment this news in the first place, but I continuesly received information on the event, so I decided to collect as much information as I can to make a comment on it. In short, the conclusion is that the event has nearly nothing to do with the lockdown, according to the information I collect. I will list the facts I collected which is against each of the reasons of the statement “The fire becomes serious because of the lockdown”.</p>
+<ol>
+<li>Access to the community is blocked due to the epidemic closure<br>The story I read earlier was that because of the epidemic prevention and control, access to the community was blocked, resulting in fire engines having to remove protective panels and wire to enter the community, so rescue operations were delayed, leading to a serious situation. However, I checked the information about this community and posted pictures and complaints online, and all this evidence points to serious problems with the fire protections in this neighbourhood. In order to facilitate the management of vehicle access, a lifting rail has been installed in the middle of the road at the right-hand turn for more than 10 metres into the gates of the district, while ground stakes have been extended. A fence was installed along the steps on the right side of the road to separate the pedestrian access. After the fire engine entered, it had to turn right to reach the building where the incident occurred. The firefighters removed the pedestrian fence and lift rails successively, but the ground piles had to be removed together because of the large turning radius of the vehicle.<br><img src="https://s2.loli.net/2022/11/29/DSXBUInjvTa4OsN.png" alt="Example pircture of the ground piles"></li>
+<li>Residents in the area cannot leave their homes because of lockdown<br>The main basis for this point of view is a screenshot of a WeChat group chat. The picture shows that because of positive cases in the community, the neighborhood committee asked residents to stay at home and not go out. Also, there is another picture shows that the area is one of the high risk areas, which is opposite with the official statement.<br><img src="https://s2.loli.net/2022/11/29/hPakibe5jr4CESJ.png" alt="Screenshots of WeChat group"><br><img src="https://s2.loli.net/2022/11/29/uZzoL7dlUORDvs5.png" alt="Screenshots of high risk area"><br>However, I check the name of the community, and confirmed that the screenshot was for another neiberhood with the same name. As for the high risk area, I checked the screenshot again, the picture is for “last 14 days”, which mean the area had been a high risk area in the last 14 days, but if you check the date of the fire, you will find the place has already become a low risk area 3 days before that. I don’t know why the person who gave this screenshot chose to show the status last 14 days, but I think they did it for some purpose.</li>
+</ol>
+<p>I totally agree with the idea that we are over-protecting from the Covid thing,and I can fully understand the anger of the people of Xinjiang over this event, but I think it is also important to know the truth before getting angry by the fake information. I totally agree with the protest against excessive epidemic prevention, but the real responsible person behind this accident cannot escape punishment because of people’s angry emotions against epidemic prevention. It is essential to check the truth of the information before giving opinions, and don’t let emotions cloud judgments.</p>
+]]></content>
       <categories>
-          
-          <category> Test_categories </category>
-          
+        <category>Daily Bin</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> test </tag>
-            
-            <tag> test2 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>News</tag>
+        <tag>Public Opinion</tag>
+        <tag>Emotional&amp;Rational Thinking</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>The Price Of Doubting</title>
+    <url>/2022/11/29/The-Price-Of-Doubting/</url>
+    <content><![CDATA[<p>As I’m busy with preparation of my project, I forced myself to read some articles to understand some basic knowledge in the corresponding field. Besides, I also read the white-book of some related projects. For some of the project, I ddi’t really believe what they said in the white-book, so I began to doubt the reliability of these projects, and that costed me a lot of time. Therefore, I began to think why doubting costs so many time, while believing cost nothing? To answer this question, I’ve reorganised the whole process of “doubting”.<br>First, any kind of statement is consist of three parts:</p>
+<ol>
+<li>Theory&#x2F;Exprience&#x2F;Rule</li>
+<li>Evidence&#x2F;Facts&#x2F;Supporting Resource</li>
+<li>Conclusion</li>
+</ol>
+<p>And the doubting, can aim at 1 or 2, or even the logic of the reasoning process. To doubt part 1 and 2, it can take a lot of time on finding opposite evidence, or just to prove the exist ones are wrong. As for the reasoning process, it is so hard to realize the problem it after you read it. Therefore, the price of doubting is quite high in total. </p>
+]]></content>
+      <categories>
+        <category>Daily Bin</category>
+      </categories>
+      <tags>
+        <tag>Emotional&amp;Rational Thinking</tag>
+        <tag>Logic</tag>
+      </tags>
+  </entry>
 </search>

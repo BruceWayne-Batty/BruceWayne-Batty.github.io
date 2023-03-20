@@ -22,25 +22,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Fire after Fire</title>
-    <url>/2022/11/28/Erupting-After-Fire/</url>
-    <content><![CDATA[<p>I did not want to comment this news in the first place, but I continuesly received information on the event, so I decided to collect as much information as I can to make a comment on it. In short, the conclusion is that the event has nearly nothing to do with the lockdown, according to the information I collect. I will list the facts I collected which is against each of the reasons of the statement “The fire becomes serious because of the lockdown”.</p>
-<ol>
-<li>Access to the community is blocked due to the epidemic closure<br>The story I read earlier was that because of the epidemic prevention and control, access to the community was blocked, resulting in fire engines having to remove protective panels and wire to enter the community, so rescue operations were delayed, leading to a serious situation. However, I checked the information about this community and posted pictures and complaints online, and all this evidence points to serious problems with the fire protections in this neighbourhood. In order to facilitate the management of vehicle access, a lifting rail has been installed in the middle of the road at the right-hand turn for more than 10 metres into the gates of the district, while ground stakes have been extended. A fence was installed along the steps on the right side of the road to separate the pedestrian access. After the fire engine entered, it had to turn right to reach the building where the incident occurred. The firefighters removed the pedestrian fence and lift rails successively, but the ground piles had to be removed together because of the large turning radius of the vehicle.<br><img src="https://s2.loli.net/2022/11/29/DSXBUInjvTa4OsN.png" alt="Example pircture of the ground piles"></li>
-<li>Residents in the area cannot leave their homes because of lockdown<br>The main basis for this point of view is a screenshot of a WeChat group chat. The picture shows that because of positive cases in the community, the neighborhood committee asked residents to stay at home and not go out. Also, there is another picture shows that the area is one of the high risk areas, which is opposite with the official statement.<br><img src="https://s2.loli.net/2022/11/29/hPakibe5jr4CESJ.png" alt="Screenshots of WeChat group"><br><img src="https://s2.loli.net/2022/11/29/uZzoL7dlUORDvs5.png" alt="Screenshots of high risk area"><br>However, I check the name of the community, and confirmed that the screenshot was for another neiberhood with the same name. As for the high risk area, I checked the screenshot again, the picture is for “last 14 days”, which mean the area had been a high risk area in the last 14 days, but if you check the date of the fire, you will find the place has already become a low risk area 3 days before that. I don’t know why the person who gave this screenshot chose to show the status last 14 days, but I think they did it for some purpose.</li>
-</ol>
-<p>I totally agree with the idea that we are over-protecting from the Covid thing,and I can fully understand the anger of the people of Xinjiang over this event, but I think it is also important to know the truth before getting angry by the fake information. I totally agree with the protest against excessive epidemic prevention, but the real responsible person behind this accident cannot escape punishment because of people’s angry emotions against epidemic prevention. It is essential to check the truth of the information before giving opinions, and don’t let emotions cloud judgments.</p>
-]]></content>
-      <categories>
-        <category>Daily Bin</category>
-      </categories>
-      <tags>
-        <tag>News</tag>
-        <tag>Public Opinion</tag>
-        <tag>Emotional&amp;Rational Thinking</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>The Price Of Doubting</title>
     <url>/2022/11/29/The-Price-Of-Doubting/</url>
     <content><![CDATA[<p>As I’m busy with preparation of my project, I forced myself to read some articles to understand some basic knowledge in the corresponding field. Besides, I also read the white-book of some related projects. For some of the project, I ddi’t really believe what they said in the white-book, so I began to doubt the reliability of these projects, and that costed me a lot of time. Therefore, I began to think why doubting costs so many time, while believing cost nothing? To answer this question, I’ve reorganised the whole process of “doubting”.<br>First, any kind of statement is consist of three parts:</p>
@@ -57,6 +38,21 @@
       <tags>
         <tag>Emotional&amp;Rational Thinking</tag>
         <tag>Logic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Developing of Dice&amp;Dice 0:Create Basic UI manager</title>
+    <url>/2023/01/29/Developing-of-Dice-Dice-0-Create-Basic-UI-manager/</url>
+    <content><![CDATA[<p>After 1 month of preparing, I decided to start the development of this game I planed to do so long ago. This is a deck-building game like slay-spire, but in this game the player will not build a deck. Instead, the player will have to upgarde their own dice to fight the final boss. It’s the player’s choice to be gressive or steady. In this first stage, I tried to build a basic UI system and a UI manager for the game.
+ </p>
+]]></content>
+      <categories>
+        <category>Game Developement</category>
+      </categories>
+      <tags>
+        <tag>Dice&amp;Dice</tag>
+        <tag>GameDesign</tag>
+        <tag>UI</tag>
       </tags>
   </entry>
 </search>

@@ -1,72 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>First Thing First: 404 not fine</title>
-    <url>/2022/11/27/First-Thing-First-404-not-fine/</url>
-    <content><![CDATA[<p>At first, this page is only for testing if the website works. However, when I finished all of settings on this page, I started to think about the problem of testing.</p>
-<p>Why do we need to test things? Or the question is, how do we comfort oursleves after we finish our job? I observed many people’s coding process, and I think they can be divided into 3 categories.</p>
-<ol>
-<li>Cautious Debugger<br>This kind of people try to test every new character they add in the code, even if they add a comment line in the program, they will run the program to test if that line is in the comment mode.</li>
-<li>Functional Tester<br>For this kind, they will only test the functionality of each part, and sometimes they will have bugs of typo or similar problems. If you try to read their code, you can understand the functions and variable clearly. The only problem is I never see this kind of people in reality.</li>
-<li>Confident conqueror<br>The condident conqueror, also known as “Conqueror The XXX”.  The coding level of this group varies a lot. Some of them are like a bug generating machine. If you keep compiling their code everyday, you will definitly become a master of recognizing errors and detecting bugs. In the meanwhile, some of them are like the skynet of The Terminator, and the only thing you need to worry about them is building a killing machine in one day.</li>
-</ol>
-<p>The most interesting thing about this testing process is that I have taken a course about this process, but now the only piece of memory of this course I have, is having hotpot after the exam, and it tastes really good to have it, even in the summer. So, to redeem my memory, I searched “How to “How to test your code formally”. The result really surprised me. In short, you should do either like group1 or group2, but not group3. I think the most possible reason is that none of the people I know, who is good at coding, is working in a huge group, so they don’t need to care about the readability of the code, but only the functionality. </p>
-<p>I think this is enough for “testing”, both for testing all kinds of functions and for this topic. </p>
-]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>二次元手游归一性</title>
+      <link href="/2023/03/23/%E4%BA%8C%E6%AC%A1%E5%85%83%E6%89%8B%E6%B8%B8%E5%BD%92%E4%B8%80%E6%80%A7/"/>
+      <url>/2023/03/23/%E4%BA%8C%E6%AC%A1%E5%85%83%E6%89%8B%E6%B8%B8%E5%BD%92%E4%B8%80%E6%80%A7/</url>
+      
+        <content type="html"><![CDATA[<p>何谓二游归一性，这其实是我自创的一个名词，形容的是二次元手游在玩家群体稳定之后，游戏模式变得同质化和单一化这个现象。</p><p>我本身并不是什么二游重度玩家，玩过的大部分二游也仅仅是止步于度过新手期开始长草，抄作业，一旦涉及到排名和竞速之后最高也就在前5%的区间。虽然每个游戏的深度止步于核心玩家之前，但是基本上所有类型的二游我都或多或少的玩过。那么，既然说所有类型，就表明有类型之分，那又何来的归一化之说呢？</p><p>现在二游的一个普遍设计思路是抢占玩家的碎片化时间。这也是我下来所体会到的，所有的二游都是在新手开荒期会有很多可以肝的点，比如说有可以新的副本，有新的模式，或者说有没有打完的主线，而在打主线的过程中拿到的收益又会解锁更多的新模式。这个阶段我称之为“可肝阶段”。一般来说，这个阶段的持续时间在一到两周，具体视入坑时间和玩家的肝度来决定。在经历这个阶段之后，就会开始平稳发育期，这个时期的玩家每天刷到的非抽卡资源都还能有用，但是由于体力限制或者收益限制，每天能获取的资源有限，在逐渐把所有可以靠资源提升的内容升级完之后，就会进入长草期（也有很多玩家会在平稳发育期就开始长草，因为总会有许多角色是没有培养潜力的，也就是说角色本身的强度太低，或者对应的体系还没有成型，导致玩家没有培养这个角色的欲望）。在长草期的一个普遍特点就是，刷到的资源没地方用，或者说在出新的角色或活动之前，都没有继续刷的动力。基本上每天就是上线做完日常。而二游的归一性就体现在这里，试想一下，任何一个正在玩的二游，把每日任务的内容换到一个你没有玩过的游戏里面，我相信大多数玩家都不会愿意做这个任务。</p><p>从这个角度出发，我认为二游的专注点应该是在“可肝阶段”尽可能的吸引玩家，让玩家在平稳发育期也能有足够多的游戏内容。这又涉及到我的另一个观点，二游不应该有过多的游戏性和复杂的机制，只需要简单的吸引玩家然后让玩家每天做日常上班就好了。（悲）</p>]]></content>
+      
+      
       <categories>
-        <category>Test_categories</category>
+          
+          <category> Daily Bin </category>
+          
       </categories>
-      <tags>
-        <tag>test</tag>
-        <tag>test2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>The Price Of Doubting</title>
-    <url>/2022/11/29/The-Price-Of-Doubting/</url>
-    <content><![CDATA[<p>As I’m busy with preparation of my project, I forced myself to read some articles to understand some basic knowledge in the corresponding field. Besides, I also read the white-book of some related projects. For some of the project, I ddi’t really believe what they said in the white-book, so I began to doubt the reliability of these projects, and that costed me a lot of time. Therefore, I began to think why doubting costs so many time, while believing cost nothing? To answer this question, I’ve reorganised the whole process of “doubting”.<br>First, any kind of statement is consist of three parts:</p>
-<ol>
-<li>Theory&#x2F;Exprience&#x2F;Rule</li>
-<li>Evidence&#x2F;Facts&#x2F;Supporting Resource</li>
-<li>Conclusion</li>
-</ol>
-<p>And the doubting, can aim at 1 or 2, or even the logic of the reasoning process. To doubt part 1 and 2, it can take a lot of time on finding opposite evidence, or just to prove the exist ones are wrong. As for the reasoning process, it is so hard to realize the problem it after you read it. Therefore, the price of doubting is quite high in total. </p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 二次元，游戏 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GDD for Fluffy&amp;Fury</title>
+      <link href="/2023/03/20/GDD-for-Fluffy-Fury/"/>
+      <url>/2023/03/20/GDD-for-Fluffy-Fury/</url>
+      
+        <content type="html"><![CDATA[<p>Actually this GDD file is an assignment of the course I take in the course narrative game design. The picture is provided by the professor and the requirement was to design a one-page relax game design document using the picture provided. The theme of the game is not limited. Therefore, I came up with this idea of traveling game, in which you can travel with your giant fluffy friend and enjoy the immersive feeling along the way. Click the link to see the file.</p><p><a href="https://github.com/BruceWayne-Batty/GameDesign/blob/63509a812531c670c9bce3d8f6a71663f7b461cf/Fluffy&amp;Furry.pdf">https://github.com/BruceWayne-Batty/GameDesign/blob/63509a812531c670c9bce3d8f6a71663f7b461cf/Fluffy&amp;Furry.pdf</a></p>]]></content>
+      
+      
       <categories>
-        <category>Daily Bin</category>
+          
+          <category> Game Design </category>
+          
       </categories>
-      <tags>
-        <tag>Emotional&amp;Rational Thinking</tag>
-        <tag>Logic</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Developing of Dice&amp;Dice 0:Create Basic UI manager</title>
-    <url>/2023/01/29/Developing-of-Dice-Dice-0-Create-Basic-UI-manager/</url>
-    <content><![CDATA[<p>After 1 month of preparing, I decided to start the development of this game I planed to do so long ago. This is a deck-building game like slay-spire, but in this game the player will not build a deck. Instead, the player will have to upgarde their own dice to fight the final boss. It’s the player’s choice to be gressive or steady. In this first stage, I tried to build a basic UI system and a UI manager for the game.
- </p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> GameDesign </tag>
+            
+            <tag> GDD </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Developing of Dice&amp;Dice 0:Create Basic UI manager</title>
+      <link href="/2023/01/29/Developing-of-Dice-Dice-0-Create-Basic-UI-manager/"/>
+      <url>/2023/01/29/Developing-of-Dice-Dice-0-Create-Basic-UI-manager/</url>
+      
+        <content type="html"><![CDATA[<p>After 1 month of preparing, I decided to start the development of this game I planed to do so long ago. This is a deck-building game like slay-spire, but in this game the player will not build a deck. Instead, the player will have to upgarde their own dice to fight the final boss. It’s the player’s choice to be gressive or steady. In this first stage, I tried to build a basic UI system and a UI manager for the game. </p>]]></content>
+      
+      
       <categories>
-        <category>Game Developement</category>
+          
+          <category> Game Developement </category>
+          
       </categories>
-      <tags>
-        <tag>Dice&amp;Dice</tag>
-        <tag>GameDesign</tag>
-        <tag>UI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>GDD for Fluffy&amp;Fury</title>
-    <url>/2023/03/20/GDD-for-Fluffy-Fury/</url>
-    <content><![CDATA[<p>Actually this GDD file is an assignment of the course I take in the course narrative game design. The picture is provided by the professor and the requirement was to design a one-page relax game design document using the picture provided. The theme of the game is not limited. Therefore, I came up with this idea of traveling game, in which you can travel with your giant fluffy friend and enjoy the immersive feeling along the way. Click the link to see the file.</p>
-<p><a href="https://github.com/BruceWayne-Batty/GameDesign/blob/63509a812531c670c9bce3d8f6a71663f7b461cf/Fluffy&amp;Furry.pdf">https://github.com/BruceWayne-Batty/GameDesign/blob/63509a812531c670c9bce3d8f6a71663f7b461cf/Fluffy&amp;Furry.pdf</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Dice&amp;Dice </tag>
+            
+            <tag> GameDesign </tag>
+            
+            <tag> UI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>The Price Of Doubting</title>
+      <link href="/2022/11/29/The-Price-Of-Doubting/"/>
+      <url>/2022/11/29/The-Price-Of-Doubting/</url>
+      
+        <content type="html"><![CDATA[<p>As I’m busy with preparation of my project, I forced myself to read some articles to understand some basic knowledge in the corresponding field. Besides, I also read the white-book of some related projects. For some of the project, I ddi’t really believe what they said in the white-book, so I began to doubt the reliability of these projects, and that costed me a lot of time. Therefore, I began to think why doubting costs so many time, while believing cost nothing? To answer this question, I’ve reorganised the whole process of “doubting”.<br>First, any kind of statement is consist of three parts:</p><ol><li>Theory&#x2F;Exprience&#x2F;Rule</li><li>Evidence&#x2F;Facts&#x2F;Supporting Resource</li><li>Conclusion</li></ol><p>And the doubting, can aim at 1 or 2, or even the logic of the reasoning process. To doubt part 1 and 2, it can take a lot of time on finding opposite evidence, or just to prove the exist ones are wrong. As for the reasoning process, it is so hard to realize the problem it after you read it. Therefore, the price of doubting is quite high in total. </p>]]></content>
+      
+      
       <categories>
-        <category>Game Design</category>
+          
+          <category> Daily Bin </category>
+          
       </categories>
-      <tags>
-        <tag>GameDesign</tag>
-        <tag>GDD</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> Emotional&amp;Rational Thinking </tag>
+            
+            <tag> Logic </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>First Thing First: 404 not fine</title>
+      <link href="/2022/11/27/First-Thing-First-404-not-fine/"/>
+      <url>/2022/11/27/First-Thing-First-404-not-fine/</url>
+      
+        <content type="html"><![CDATA[<p>At first, this page is only for testing if the website works. However, when I finished all of settings on this page, I started to think about the problem of testing.</p><p>Why do we need to test things? Or the question is, how do we comfort oursleves after we finish our job? I observed many people’s coding process, and I think they can be divided into 3 categories.</p><ol><li>Cautious Debugger<br>This kind of people try to test every new character they add in the code, even if they add a comment line in the program, they will run the program to test if that line is in the comment mode.</li><li>Functional Tester<br>For this kind, they will only test the functionality of each part, and sometimes they will have bugs of typo or similar problems. If you try to read their code, you can understand the functions and variable clearly. The only problem is I never see this kind of people in reality.</li><li>Confident conqueror<br>The condident conqueror, also known as “Conqueror The XXX”.  The coding level of this group varies a lot. Some of them are like a bug generating machine. If you keep compiling their code everyday, you will definitly become a master of recognizing errors and detecting bugs. In the meanwhile, some of them are like the skynet of The Terminator, and the only thing you need to worry about them is building a killing machine in one day.</li></ol><p>The most interesting thing about this testing process is that I have taken a course about this process, but now the only piece of memory of this course I have, is having hotpot after the exam, and it tastes really good to have it, even in the summer. So, to redeem my memory, I searched “How to “How to test your code formally”. The result really surprised me. In short, you should do either like group1 or group2, but not group3. I think the most possible reason is that none of the people I know, who is good at coding, is working in a huge group, so they don’t need to care about the readability of the code, but only the functionality. </p><p>I think this is enough for “testing”, both for testing all kinds of functions and for this topic. </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Test_categories </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> test </tag>
+            
+            <tag> test2 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>

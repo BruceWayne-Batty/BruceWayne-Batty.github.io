@@ -123,4 +123,20 @@
         <tag>DevBlog</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Development Blog 2</title>
+    <url>/2023/04/19/Development-Blog-2/</url>
+    <content><![CDATA[<p>This is the devlopment blog for game <em>“TechnoScourge: Rise of the Adaptivethe”</em> in the 3rd and 4th week(Since there is one week holiday in the 3rd week so I combine the blog of these two weeks together)</p>
+<p>There is some problems with using scriptable object as the user stat directly, we need to use a monobehaviour script to store the data of the player, so an additional script for the player stat is needed.</p>
+<p>For the inventory system, I implemented a simple system which now can add or remove items in the in game ui. The items are saved as scriptable object and the inventory system will only read the data in it instead of changing anything like the way we do in the player stat, so it will not have any problem using the scriptable item.<br><img src="https://s2.loli.net/2023/04/19/KaGuMq3HZFOQXyw.png" alt="InventorySystem1.png"><br>I connected the inventory system with player stat now, and the stat is not shown in the in-game UI, but the icons of the items does. I will show the user stats in the panel and also the equipment gears on the panel.</p>
+<p>Now I’m working on the inventory part of the GDD file, the plan now is to implement at least 2 different builds in the demo, and design at least 8 builds for the game.</p>
+]]></content>
+      <categories>
+        <category>GameDesign Development Blog</category>
+      </categories>
+      <tags>
+        <tag>GameDesign</tag>
+        <tag>DevBlog</tag>
+      </tags>
+  </entry>
 </search>

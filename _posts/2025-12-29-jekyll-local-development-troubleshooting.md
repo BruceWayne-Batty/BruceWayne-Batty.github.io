@@ -3,6 +3,7 @@ layout: post
 title: "Tiny Problems for Jekyll Local Development"
 date: 2025-12-30 12:00:00 +0800
 comments: true
+category: Jekyll
 ---
 
 When setting up a Jekyll blog locally, you might encounter several common issues that prevent the site from working correctly. This post documents the problems we encountered and their solutions during a recent Jekyll setup.

@@ -3,6 +3,7 @@ layout: post
 title: "Why I picked Jekyll over Hexo, VitePress, and WordPress"
 date: 2025-12-27 16:25:06 +0800
 comments: true
+category: Technology
 ---
 
 # Why I picked Jekyll over Hexo, VitePress, and WordPress

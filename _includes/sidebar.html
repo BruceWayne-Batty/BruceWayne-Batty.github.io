@@ -3,13 +3,68 @@
 </div>
 
 <div class="sidebar well">
-    <h1>Recent Posts</h1>
-    <ul>
-        {% for post in site.posts limit:5 %}
-          <li><a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
-        {% endfor %}
-    </ul>
+    <h1>Posts by Category</h1>
+    {% assign categories = site.posts | where_exp: "post", "post.category != nil" | map: 'category' | uniq | sort %}
+    {% for category in categories %}
+        {% assign category_id = category | slugify %}
+        <h3>
+            <a href="#collapse-{{ category_id }}" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ category_id }}" style="cursor: pointer; text-decoration: none;">
+                <span class="category-toggle">▶</span> {{ category }}
+            </a>
+        </h3>
+        <div class="collapse" id="collapse-{{ category_id }}">
+            <ul>
+                {% for post in site.posts %}
+                    {% if post.category == category %}
+                        <li><a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+    {% assign uncategorized = site.posts | where_exp: "post", "post.category == nil" %}
+    {% if uncategorized.size > 0 %}
+        <h3>
+            <a href="#collapse-uncategorized" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-uncategorized" style="cursor: pointer; text-decoration: none;">
+                <span class="category-toggle">▶</span> Uncategorized
+            </a>
+        </h3>
+        <div class="collapse" id="collapse-uncategorized">
+            <ul>
+                {% for post in uncategorized %}
+                    <li><a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </div>
+
+<script>
+$(document).ready(function() {
+    // Toggle arrow icon when category is expanded/collapsed
+    $('[data-toggle="collapse"]').each(function() {
+        var $link = $(this);
+        var target = $link.attr('href');
+        var $toggle = $link.find('.category-toggle');
+        var $target = $(target);
+        
+        // Set initial state based on current collapse state
+        if ($target.hasClass('in')) {
+            $toggle.text('▼');
+        } else {
+            $toggle.text('▶');
+        }
+        
+        // Update arrow on show/hide
+        $target.on('shown.bs.collapse', function() {
+            $toggle.text('▼');
+        });
+        $target.on('hidden.bs.collapse', function() {
+            $toggle.text('▶');
+        });
+    });
+});
+</script>
 
 <div class="sidebar well">
 {% include links-list.html %}

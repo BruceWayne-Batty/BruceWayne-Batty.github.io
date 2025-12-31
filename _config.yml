@@ -13,23 +13,26 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: MatJek
+title: Batcave
 description: > # this means to ignore newlines until "baseurl:"
-  Material theme based on <a href="http://materializecss.com">Materialize.css</a> for jekyll sites
+  Personal website of Bruce Wu
 baseurl: ""
-url: "https://shawnteoh.github.io"
+url: "https://brucewayne-batty.github.io/"
 permalink: /:year/:month/:day/:title
-repository: ShawnTeoh/matjek
+repository: BruceWayne-Batty/BruceWayne-Batty.github.io
 paginate: 5
 
 # MatJek specific configurations
-github_profile: "https://github.com/ShawnTeoh"
-user: "John Doe"
-user_email: "john@doe.com"
+github_profile: "https://github.com/BruceWayne-Batty"
+user: "Bruce Wu"
+user_email: "118010338@link.cuhk.edu.cn"
 contact_url: "https://goo.gl/tVljbV"
-google_tracking_id: "UA-96359860-1"
-google_site_verification: "UA-96359860-1"
-disqus_shortname: "matjek"
+# Google Analytics 4 (GA4) Measurement ID (format: G-XXXXXXXXXX)
+# Get your GA4 Measurement ID from: https://analytics.google.com/
+# Note: This uses the new GA4 gtag.js, not the old Universal Analytics
+google_tracking_id: "G-JVHV2KPG5C"  # Replace with your GA4 Measurement ID (G-XXXXXXXXXX)
+# google_site_verification: "UA-96359860-1"  "no longer used"
+disqus_shortname: "brucewayne-batty"
 
 # Build settings
 markdown: kramdown

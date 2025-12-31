@@ -1,47 +1,59 @@
-{% include header.html %}
-
-<div class="container container-left">
-    <div class="row">
-        <div class="col-md-3 hidden-xs">
-            {% include sidebar.html %}
-        </div>
-        <div class="col-md-9">
-          <div class="article">
-            <div class="well">
-                <h1><a href="{{ site.baseurl}}{{ page.url }}">{{ page.date | date: "%b %-d, %Y" }} - {{ page.title }}</a></h1>
-            {% if site.comments and page.comments %}
-                {% if site.disqus != '' %}
-                <p class="author"><a href="#disqus_thread" data-disqus-identifier="{{ page.url | slugify }}">Comments</a></p>
-                {% elsif site.isso != '' %}
-                <p class="author"><a href="{{ site.baseurl }}{{ page.url }}{{ site.isso_suffix }}#isso-thread">Comments</a></p>
-                {% endif %}
-            {% endif %}
-            <div class="post-content">
-            {{ content }}
-            </div>
-            {% if page.comments %}
-                {% if site.disqus != '' %}
-            <div id="disqus_thread">
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-            </div>
-                {% elsif site.isso != '' %}
-                <section id="isso-thread"></section>
-                {% endif %}
-            {% endif %}
-            </div>
-          </div>
-          <div class="pagination">
-              {% if page.next %}
-                <a class="btn btn-default" href="{{ site.baseurl}}{{ page.next.url }}" class="next">Newer Post</a>
-              {% endif %}
-              {% if page.previous %}
-                <a class="btn btn-default" href="{{ site.baseurl}}{{ page.previous.url }}" class="previous">Older Post</a>
-              {% endif %}
-          </div>
-        </div>
-    </div>
+---
+layout: default
+css: ["post.css"]
+js: ["post.js"]
+---
+<div id="post-info">
+  <h3>{{page.title}}</h3>
+  <ul class="collapsible hoverable" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Date">date_range</i>
+          {{page.date | date: "%d/%m/%Y %H:%M"}}
+          <i id="indicate" class="right material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Show extra info">info</i>
+        </span>
+      </div>
+      <div class="collapsible-body">
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Categories">sort</i>
+          {% for cat in page.categories %}
+          {% capture test %}{{cat | slice: 0}}{% endcapture %}
+          {% capture testup %}{{cat | slice: 0 | upcase}}{% endcapture %}
+          <a href="{{site.baseurl}}/categories#{{cat | slugify}}{% if test == testup %}_cap{% endif %}" target="_blank"><div class="chip">{{cat}}</div></a>
+          {% endfor %}
+        </span>
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Tags">label</i>
+          {% for tag in page.tags %}
+          {% capture test %}{{tag | slice: 0}}{% endcapture %}
+          {% capture testup %}{{tag | slice: 0 | upcase}}{% endcapture %}
+          <a href="{{site.baseurl}}/tags#{{tag | slugify}}{% if test == testup %}_cap{% endif %}" target="_blank"><div class="chip">{{tag}}</div></a>
+          {% endfor %}
+        </span>
+      </div>
+    </li>
+  </ul>
 </div>
-
-{% include disqus-comments.html %}
-{% include footer.html %}
+<div class="divider"></div>
+<div class="row">
+  <div class="col s12">
+    {{ content }}
+  </div>
+</div>
+{% if site.disqus_shortname and page.comments %}
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function () {
+    this.page.url = "{{site.url}}{{site.baseurl}}{{page.url}}";
+    this.page.identifier = "{{page.id}}";
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//{{site.disqus_shortname}}.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endif %}

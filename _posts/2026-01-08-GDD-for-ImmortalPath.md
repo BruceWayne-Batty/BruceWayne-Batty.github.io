@@ -1,13 +1,13 @@
 ---
 layout: post
-title:  "《登仙志》开发日志：0"
+title:  "登仙志 游戏设计文档"
 date:   2026-01-08 17:30:00 +0800
 categories: Default
 tags: GDD ImmortalPath
 comments: 1
 ---
 
-# 《仙途无界》GDD（游戏设计文档）
+# 登仙志 游戏设计文档
 
 ## 一、核心概念
 - **游戏类型**：高自由度开放世界仙侠文字冒险游戏

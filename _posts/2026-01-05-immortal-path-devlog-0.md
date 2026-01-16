@@ -3,7 +3,7 @@ layout: post
 title: "《登仙志》开发日志 #0：一个文字修仙游戏的开始"
 date: 2026-01-05 07:30:00 +0800
 categories: DevLog
-tags: GameDev
+tags: GameDev ImmortalPath
 comments: 1
 ---
 # 🌱 缘起

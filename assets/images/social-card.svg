@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Brucy Wu — Obsidian Terminal. Independent developer. Games, AI, Web.">
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#252a26" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0b0c0c"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity=".45"/>
+  <path d="M64 64H1136M64 566H1136" stroke="#343b35"/>
+  <g font-family="Menlo, Monaco, monospace">
+    <text x="64" y="112" fill="#a8ff60" font-size="17">&gt; OBSIDIAN TERMINAL / INDEPENDENT DEVELOPER</text>
+    <text x="64" y="275" fill="#e8e9e4" font-size="120" font-weight="bold" letter-spacing="-7">BRUCY WU</text>
+    <text x="68" y="354" fill="#a8ff60" font-size="31">GAMES / AI / WEB</text>
+    <text x="68" y="427" fill="#a3aaa2" font-size="19">Building things. Debugging everything.</text>
+    <text x="64" y="546" fill="#a3aaa2" font-size="15">BRUCEWAYNE-BATTY.GITHUB.IO</text>
+    <text x="1026" y="546" fill="#a8ff60" font-size="15">BW_ / 01</text>
+  </g>
+  <path d="M1098 361V427M1065 394H1131" stroke="#a8ff60" stroke-width="2"/>
+  <circle cx="1098" cy="394" r="24" fill="none" stroke="#a8ff60" stroke-opacity=".4"/>
+</svg>

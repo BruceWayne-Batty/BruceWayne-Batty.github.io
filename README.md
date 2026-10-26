@@ -24,7 +24,7 @@ node --check assets/js/site.js
 在 GitHub 仓库的 **Settings → Pages** 中选择要发布的分支及根目录 `/`。网站按用户主页根路径部署：`https://brucewayne-batty.github.io/`。
 
 - `404.html`：GitHub Pages 自定义错误页。本地 HTTP server 不会自动调用它，可直接访问 `/404.html` 检查样式。
-- `robots.txt` / `sitemap.xml`：允许索引并提供主页、Projects、Notes 和三篇文章的地址。
+- `robots.txt` / `sitemap.xml`：允许索引并提供主页、Projects、Notes 和四篇文章的地址。
 - `assets/images/favicon.svg`：站点图标。
 - `assets/images/social-card.png`：1200 × 630 分享预览；设计源文件为同目录 `social-card.svg`，修改后须重新导出 PNG。
 - 如改域名，需同步更新主页、列表页及文章页中的 canonical、Open Graph / Twitter 地址，以及 `robots.txt`、`sitemap.xml`。

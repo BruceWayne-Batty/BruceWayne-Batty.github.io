@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bug 为什么总像一家人？从状态、边界和回归测试聊聊独立开发中的排错。">
+  <meta name="theme-color" content="#0b0c0c">
+  <title>为什么“最后一个 Bug”总有家属？ — Brucy Wu</title>
+  <link rel="canonical" href="https://brucewayne-batty.github.io/notes-last-bug.html">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="为什么“最后一个 Bug”总有家属？ — Brucy Wu">
+  <meta property="og:description" content="修好一个症状，不代表修好了它背后的假设。关于排错、状态与回归测试的一点杂谈。">
+  <meta property="og:url" content="https://brucewayne-batty.github.io/notes-last-bug.html">
+  <meta property="og:image" content="https://brucewayne-batty.github.io/assets/images/social-card.png">
+  <meta property="og:image:alt" content="Brucy Wu — Obsidian Terminal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="为什么“最后一个 Bug”总有家属？ — Brucy Wu">
+  <meta name="twitter:description" content="从状态、边界和回归测试聊聊独立开发中的排错。">
+  <meta name="twitter:image" content="https://brucewayne-batty.github.io/assets/images/social-card.png">
+  <link rel="stylesheet" href="assets/css/obsidian.css">
+</head>
+<body data-title-zh="为什么“最后一个 Bug”总有家属？ — Brucy Wu" data-title-en="Why does the “last bug” always have a family? — Brucy Wu">
+  <a class="skip-link" href="#main" data-zh="跳至正文" data-en="Skip to content">跳至正文</a>
+  <header class="site-header article-header">
+    <a class="wordmark" href="index.html" aria-label="BW_ — Brucy Wu 首页" data-aria-zh="BW_ — Brucy Wu 首页" data-aria-en="BW_ — Brucy Wu home"><span>BW</span><i></i></a>
+    <a class="article-home" href="notes.html" data-zh="← 脑内运行日志" data-en="← Runtime thoughts">← 脑内运行日志</a>
+    <div class="header-tools"><div class="language-switch" role="group" aria-label="语言" data-aria-zh="语言" data-aria-en="Language"><button type="button" data-lang="zh">中</button><span>/</span><button type="button" data-lang="en">EN</button></div></div>
+  </header>
+  <main class="article-shell" id="main" tabindex="-1">
+    <article>
+      <header class="article-heading">
+        <div class="article-meta"><code>LOG / 01</code><span data-zh="Bug 考古 · 开发随笔" data-en="Bug archaeology · Dev essay">Bug 考古 · 开发随笔</span></div>
+        <h1 data-zh="为什么“最后一个 Bug”总有家属？" data-en="Why does the “last bug” always have a family?">为什么“最后一个 Bug”总有家属？</h1>
+        <p class="article-deck" data-zh="“修完这个就收工。”这句话通常不是计划，是召唤仪式。" data-en="“Fix this one and call it a day.” Usually not a plan. More of a summoning ritual.">“修完这个就收工。”这句话通常不是计划，是召唤仪式。</p>
+        <span class="article-byline">BY BRUCY WU</span>
+      </header>
+      <div class="article-body">
+        <p data-zh="开发最容易产生的一种错觉，是把 Bug 当成待办清单上的独立条目：修一个，少一个，清零以后就可以关电脑。现实更像考古。你以为挖到了一块石头，往旁边刨两下，发现下面是一整套亲属关系。" data-en="One of development’s most tempting illusions is that bugs are independent items on a checklist: fix one, subtract one, close the laptop at zero. In practice, debugging is closer to archaeology. You uncover a stone, dig beside it, and find an entire family tree.">开发最容易产生的一种错觉，是把 Bug 当成待办清单上的独立条目：修一个，少一个，清零以后就可以关电脑。现实更像考古。你以为挖到了一块石头，往旁边刨两下，发现下面是一整套亲属关系。</p>
+        <p data-zh="它们未必是修复过程中新增的。很多时候，只是第一个错误挡住了后面的错误。门终于能打开了，你才有机会发现屋里的灯也不亮。门表示很委屈，这事确实不能全算它头上。" data-en="They are not necessarily new bugs introduced by the fix. Often, the first failure was hiding the next. Once the door opens, you finally discover that the lights do not work either. The door has a reasonable objection to taking all the blame.">它们未必是修复过程中新增的。很多时候，只是第一个错误挡住了后面的错误。门终于能打开了，你才有机会发现屋里的灯也不亮。门表示很委屈，这事确实不能全算它头上。</p>
+        <h2 data-zh="01 / 症状不同，祖先相同" data-en="01 / Different symptoms, common ancestors">01 / 症状不同，祖先相同</h2>
+        <p data-zh="假设一款游戏里，玩家快速连点按钮后，奖励发了两次。最直接的修法是把按钮禁用。但如果键盘快捷键、动画回调和读档恢复也能触发同一段逻辑，按钮只是其中一个入口。真正的问题，是系统没有明确规定：这份奖励只能结算一次。" data-en="Imagine a game awarding a reward twice after rapid clicks. Disabling the button is the obvious fix. But if a keyboard shortcut, animation callback, or restored save can invoke the same logic, the button is only one entrance. The missing rule is deeper: this reward may be settled only once.">假设一款游戏里，玩家快速连点按钮后，奖励发了两次。最直接的修法是把按钮禁用。但如果键盘快捷键、动画回调和读档恢复也能触发同一段逻辑，按钮只是其中一个入口。真正的问题，是系统没有明确规定：这份奖励只能结算一次。</p>
+        <p data-zh="这就是 Bug 的“家属”从哪来的。同一个含糊的状态、同一个未经验证的假设，会在不同入口长出不同症状。只在界面上贴创可贴，后台迟早会从别的地方继续流血。" data-en="That is where a bug’s relatives come from. One ambiguous state or unchecked assumption produces different symptoms through different entry points. A bandage on the interface does not stop the underlying logic from bleeding somewhere else.">这就是 Bug 的“家属”从哪来的。同一个含糊的状态、同一个未经验证的假设，会在不同入口长出不同症状。只在界面上贴创可贴，后台迟早会从别的地方继续流血。</p>
+        <h2 data-zh="02 / 先留下证据，再动现场" data-en="02 / Record the evidence before touching the scene">02 / 先留下证据，再动现场</h2>
+        <p data-zh="看到报错就开始改代码，很有行动力，也很容易把案发现场装修成样板间。我更愿意先问三个问题：发生前是什么状态？做了什么操作？实际结果和预期差在哪里？如果这三件事说不清，修复往往只是让问题暂时不出现。" data-en="Changing code the moment an error appears feels productive. It can also turn the crime scene into a freshly renovated showroom. I would rather start with three questions: what was the state beforehand, what action was taken, and how did the result differ from the expectation? Without those answers, a fix may merely make the symptom disappear for now.">看到报错就开始改代码，很有行动力，也很容易把案发现场装修成样板间。我更愿意先问三个问题：发生前是什么状态？做了什么操作？实际结果和预期差在哪里？如果这三件事说不清，修复往往只是让问题暂时不出现。</p>
+        <p data-zh="能稳定复现时，尽量把步骤缩短：去掉无关操作，固定输入；如果涉及随机性，就记录种子和关键状态。不能稳定复现时，先补有用的日志，而不是打印五十行“这里执行了”。日志需要回答谁、在什么状态、为什么进入了这条分支。电脑当然知道这里执行了，问题是我不知道它为什么要执行。" data-en="When a failure is reproducible, shorten the sequence: remove unrelated actions and fix the inputs. If randomness matters, record the seed and relevant state. When reproduction is unreliable, add useful logs instead of fifty lines saying “got here.” A log should explain who acted, in what state, and why this branch was taken. The computer already knows it got here. I need to know why.">能稳定复现时，尽量把步骤缩短：去掉无关操作，固定输入；如果涉及随机性，就记录种子和关键状态。不能稳定复现时，先补有用的日志，而不是打印五十行“这里执行了”。日志需要回答谁、在什么状态、为什么进入了这条分支。电脑当然知道这里执行了，问题是我不知道它为什么要执行。</p>
+        <h2 data-zh="03 / 测试不是给代码发奖状" data-en="03 / Tests are not certificates of good behavior">03 / 测试不是给代码发奖状</h2>
+        <p data-zh="修复以后，我希望留下的不只是一个提交，还有一条能拦住同类问题的测试。对于重复结算的例子，值得验证的是：同一份奖励连续触发两次，余额也只增加一次。界面按钮有没有变灰，可以再用集成测试或手动流程检查，但它不能代替底层规则。" data-en="After a fix, I want more than a commit: I want a test that can catch the same class of failure. In the duplicate-reward example, the useful assertion is that triggering the same reward twice increases the balance only once. Whether the button turns gray belongs in an integration test or manual check; it cannot replace the underlying rule.">修复以后，我希望留下的不只是一个提交，还有一条能拦住同类问题的测试。对于重复结算的例子，值得验证的是：同一份奖励连续触发两次，余额也只增加一次。界面按钮有没有变灰，可以再用集成测试或手动流程检查，但它不能代替底层规则。</p>
+        <p data-zh="测试全绿也不等于没有 Bug。它只说明，在已经写下来的那些条件里，没有发现预期之外的结果。测试的价值，不是证明开发者英明，而是把今天付过学费的事情留给明天。否则同一个坑换个文件名出现，还得重新交一次钱。" data-en="A green test suite does not mean there are no bugs. It means the conditions we wrote down produced no unexpected results. Tests are valuable not because they prove the developer is brilliant, but because they preserve today’s expensive lesson for tomorrow. Otherwise, the same trap returns under a different filename and charges tuition again.">测试全绿也不等于没有 Bug。它只说明，在已经写下来的那些条件里，没有发现预期之外的结果。测试的价值，不是证明开发者英明，而是把今天付过学费的事情留给明天。否则同一个坑换个文件名出现，还得重新交一次钱。</p>
+        <h2 data-zh="04 / “最后一个”应该是一条边界" data-en="04 / “Last” needs a boundary">04 / “最后一个”应该是一条边界</h2>
+        <p data-zh="对独立开发来说，另一种危险是把排错变成无限任务。不是每个小毛病都值得挡住发布，但会破坏存档、重复扣费、卡住核心流程的问题，也不能因为“只有偶尔发生”就装作没看见。先按影响和出现条件排优先级，比凭烦躁程度决定修哪个可靠。" data-en="For solo developers, debugging can also become an endless task. Not every minor flaw should block a release, but corrupted saves, duplicate charges, and broken core flows cannot be dismissed because they happen only occasionally. Prioritizing by impact and trigger conditions is more reliable than fixing whatever feels most annoying.">对独立开发来说，另一种危险是把排错变成无限任务。不是每个小毛病都值得挡住发布，但会破坏存档、重复扣费、卡住核心流程的问题，也不能因为“只有偶尔发生”就装作没看见。先按影响和出现条件排优先级，比凭烦躁程度决定修哪个可靠。</p>
+        <p data-zh="所以我更愿意把“最后一个 Bug”理解成：这一轮的关键风险已经处理完，核心流程重新走过，剩余问题被记录并接受。不是宣布世界从此没有错误，而是知道这次停在哪里，以及为什么可以停。" data-en="I would rather define the “last bug” as this: the critical risks for this round are addressed, the core flow has been checked again, and the remaining issues are recorded and accepted. It is not a declaration that errors no longer exist. It is knowing where to stop this time, and why stopping is reasonable.">所以我更愿意把“最后一个 Bug”理解成：这一轮的关键风险已经处理完，核心流程重新走过，剩余问题被记录并接受。不是宣布世界从此没有错误，而是知道这次停在哪里，以及为什么可以停。</p>
+        <blockquote data-zh="Bug 有家属并不可怕。可怕的是，每次见面都像第一次认识。" data-en="A bug having relatives is not the scary part. Meeting every one of them as a stranger, every time, is.">Bug 有家属并不可怕。可怕的是，每次见面都像第一次认识。</blockquote>
+      </div>
+    </article>
+    <nav class="article-pagination" aria-label="文章导航" data-aria-zh="文章导航" data-aria-en="Article navigation"><a href="notes.html" data-zh="← 返回杂谈" data-en="← All notes">← 返回杂谈</a><a href="notes-ai-efficiency.html" data-zh="下一篇：AI 效率 ↗" data-en="Next: AI efficiency ↗">下一篇：AI 效率 ↗</a></nav>
+  </main>
+  <footer class="article-footer"><span>© <span data-year>2026</span> BRUCY WU</span><a href="https://github.com/BruceWayne-Batty">GITHUB ↗</a></footer>
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

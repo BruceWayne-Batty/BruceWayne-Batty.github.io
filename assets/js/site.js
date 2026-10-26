@@ -68,7 +68,8 @@
     siteNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
       const wasOpen = body.classList.contains('nav-open');
       setMenuOpen(false);
-      const target = document.querySelector(link.getAttribute('href'));
+      const href = link.getAttribute('href');
+      const target = href?.startsWith('#') ? document.getElementById(href.slice(1)) : null;
       if (wasOpen && target) {
         target.setAttribute('tabindex', '-1');
         target.focus({ preventScroll: true });
@@ -100,8 +101,9 @@
     root.classList.add('has-reveal');
   }
 
-  const sections = [...document.querySelectorAll('main section[id]')];
   const sectionLinks = document.querySelectorAll('[data-section-link]');
+  const sectionIds = new Set([...sectionLinks].map((link) => link.getAttribute('href')));
+  const sections = [...document.querySelectorAll('main section[id]')].filter((section) => sectionIds.has(`#${section.id}`));
   if (sections.length) {
     let scheduled = false;
     const updateActiveSection = () => {

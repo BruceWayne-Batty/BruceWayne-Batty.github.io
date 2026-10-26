@@ -21,9 +21,19 @@ class Document(HTMLParser):
         self.references = []
         self.h1_count = 0
         self.meta = {}
+        self.project_count = 0
+        self.note_links = []
+        self.view_more_links = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        classes = attrs.get("class", "").split()
+        if tag == "article" and "project-card" in classes:
+            self.project_count += 1
+        if tag == "a" and "note-row" in classes:
+            self.note_links.append(attrs.get("href"))
+        if tag == "a" and "button" in classes and attrs.get("href") in ("projects.html", "notes.html"):
+            self.view_more_links.append(attrs["href"])
         identifier = attrs.get("id")
         if identifier:
             if identifier in self.ids:
@@ -98,12 +108,39 @@ for source in (ROOT / "assets/css").glob("*.css"):
     for match in re.finditer(pattern, source.read_text(), re.IGNORECASE):
         check_reference(source, next(value for value in match.groups() if value is not None))
 
-index = documents[ROOT / "index.html"]
-for key in ("description", "og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:image"):
-    if not index.meta.get(key):
-        errors.append(f"index.html: missing metadata {key}")
-if index.meta.get("og:image") != index.meta.get("twitter:image"):
-    errors.append("index.html: share preview images differ")
+for source, document in documents.items():
+    if source.name == "404.html":
+        continue
+    for key in ("description", "og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:image"):
+        if not document.meta.get(key):
+            errors.append(f"{source.name}: missing metadata {key}")
+    if document.meta.get("og:image") != document.meta.get("twitter:image"):
+        errors.append(f"{source.name}: share preview images differ")
+
+home = documents.get((ROOT / "index.html").resolve())
+projects = documents.get((ROOT / "projects.html").resolve())
+notes = documents.get((ROOT / "notes.html").resolve())
+if not all((home, projects, notes)):
+    errors.append("Missing home, projects or notes page")
+else:
+    if home.project_count != 1:
+        errors.append("index.html: expected exactly one project preview")
+    if projects.project_count < home.project_count:
+        errors.append("projects.html: incomplete project list")
+    if len(home.note_links) != min(3, len(notes.note_links)):
+        errors.append("index.html: expected three note previews (or all if fewer than three)")
+    if len(set(home.note_links)) != len(home.note_links):
+        errors.append("index.html: duplicate note previews")
+    if not set(home.note_links).issubset(notes.note_links):
+        errors.append("index.html: note previews missing from notes.html")
+    if set(home.view_more_links) != {"projects.html", "notes.html"}:
+        errors.append("index.html: missing Projects or Notes View more button")
+    for name, document in (("index.html", home), ("projects.html", projects), ("notes.html", notes)):
+        if not {"projects.html", "notes.html"}.issubset(document.references):
+            errors.append(f"{name}: missing standalone page navigation")
+    for name, document in (("projects.html", projects), ("notes.html", notes)):
+        if "index.html#about" not in document.references:
+            errors.append(f"{name}: About must link to the homepage section")
 
 try:
     sitemap = ET.parse(ROOT / "sitemap.xml")

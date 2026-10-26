@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="一个人开发，为什么还需要开会？关于角色切换、项目范围和把游戏做完的杂谈。">
+  <meta name="theme-color" content="#0b0c0c">
+  <title>独立开发：一个人同时开会、执行和走神 — Brucy Wu</title>
+  <link rel="canonical" href="https://brucewayne-batty.github.io/notes-solo-development.html">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="独立开发：一个人同时开会、执行和走神 — Brucy Wu">
+  <meta property="og:description" content="一个人可以戴很多顶帽子，但最好不要同时戴。关于范围、反馈和可持续开发。">
+  <meta property="og:url" content="https://brucewayne-batty.github.io/notes-solo-development.html">
+  <meta property="og:image" content="https://brucewayne-batty.github.io/assets/images/social-card.png">
+  <meta property="og:image:alt" content="Brucy Wu — Obsidian Terminal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="独立开发：一个人同时开会、执行和走神 — Brucy Wu">
+  <meta name="twitter:description" content="关于角色切换、项目范围和把游戏做完的杂谈。">
+  <meta name="twitter:image" content="https://brucewayne-batty.github.io/assets/images/social-card.png">
+  <link rel="stylesheet" href="assets/css/obsidian.css">
+</head>
+<body data-title-zh="独立开发：一个人同时开会、执行和走神 — Brucy Wu" data-title-en="Solo development: holding the meeting, doing the work, and zoning out — Brucy Wu">
+  <a class="skip-link" href="#main" data-zh="跳至正文" data-en="Skip to content">跳至正文</a>
+  <header class="site-header article-header">
+    <a class="wordmark" href="index.html" aria-label="BW_ — Brucy Wu 首页" data-aria-zh="BW_ — Brucy Wu 首页" data-aria-en="BW_ — Brucy Wu home"><span>BW</span><i></i></a>
+    <a class="article-home" href="notes.html" data-zh="← 脑内运行日志" data-en="← Runtime thoughts">← 脑内运行日志</a>
+    <div class="header-tools"><div class="language-switch" role="group" aria-label="语言" data-aria-zh="语言" data-aria-en="Language"><button type="button" data-lang="zh">中</button><span>/</span><button type="button" data-lang="en">EN</button></div></div>
+  </header>
+  <main class="article-shell" id="main" tabindex="-1">
+    <article>
+      <header class="article-heading">
+        <div class="article-meta"><code>LOG / 03</code><span data-zh="独立开发 · 开发随笔" data-en="Solo development · Dev essay">独立开发 · 开发随笔</span></div>
+        <h1 data-zh="独立开发：一个人同时开会、执行和走神" data-en="Solo development: holding the meeting, doing the work, and zoning out">独立开发：一个人同时开会、执行和走神</h1>
+        <p class="article-deck" data-zh="团队规模是一个人，意见分歧可以是整个部门。" data-en="The team has one person. The disagreements can fill an entire department.">团队规模是一个人，意见分歧可以是整个部门。</p>
+        <span class="article-byline">BY BRUCY WU</span>
+      </header>
+      <div class="article-body">
+        <p data-zh="独立开发的自由很好理解：没有人安排你今天必须做什么。它的麻烦也很好理解：没有人安排你今天必须做什么。你既要决定方向，又要执行，还要判断自己是不是在用“研究一下”逃避真正困难的部分。老板和员工是同一个人，甩锅的空间非常有限。" data-en="The freedom of solo development is easy to explain: nobody tells you what you must do today. So is the difficulty: nobody tells you what you must do today. You choose the direction, execute it, and decide whether “doing some research” is actually avoiding the hard part. With the boss and employee being the same person, there is very little room to pass the blame.">独立开发的自由很好理解：没有人安排你今天必须做什么。它的麻烦也很好理解：没有人安排你今天必须做什么。你既要决定方向，又要执行，还要判断自己是不是在用“研究一下”逃避真正困难的部分。老板和员工是同一个人，甩锅的空间非常有限。</p>
+        <h2 data-zh="01 / 一个人，不等于一个角色" data-en="01 / One person does not mean one role">01 / 一个人，不等于一个角色</h2>
+        <p data-zh="设计师想让系统更有深度，程序员想让结构更干净，美术想让画面别像调试界面，制作人只想知道这周能不能拿出一个可玩的版本。这些声音都可以出现在同一个脑子里，而且每个都觉得自己很有道理。" data-en="The designer wants deeper systems. The programmer wants cleaner architecture. The artist wants the game to stop looking like a debug screen. The producer wants to know whether there will be something playable this week. All of these voices can live in one head, and each has a perfectly reasonable case.">设计师想让系统更有深度，程序员想让结构更干净，美术想让画面别像调试界面，制作人只想知道这周能不能拿出一个可玩的版本。这些声音都可以出现在同一个脑子里，而且每个都觉得自己很有道理。</p>
+        <p data-zh="问题不是角色多，而是随时切换。写到一半去改配色，改完配色觉得命名不够优雅，改完命名突然想到可以重做核心机制。一天下来非常充实，项目却像被原地按摩了一遍：哪里都碰过，哪里都没往前走多少。" data-en="The problem is not the number of roles, but switching between them constantly. Halfway through coding, you adjust the palette. The palette suggests better names. The naming cleanup inspires a redesign of the core mechanic. The day feels full, but the project has received a stationary massage: everything was touched, very little moved forward.">问题不是角色多，而是随时切换。写到一半去改配色，改完配色觉得命名不够优雅，改完命名突然想到可以重做核心机制。一天下来非常充实，项目却像被原地按摩了一遍：哪里都碰过，哪里都没往前走多少。</p>
+        <p data-zh="我更喜欢把“决定做什么”和“把它做出来”暂时分开。先用一小段时间确定这一轮的目标，执行时出现的新点子就记下来，不立刻接管现场。想法需要被保存，但不需要每个都获得紧急通行证。" data-en="I prefer separating “decide what to do” from “make it happen” for a while. Use a short planning period to choose the goal, then record new ideas during execution without letting them take over. Ideas deserve to be saved. They do not all deserve an emergency pass.">我更喜欢把“决定做什么”和“把它做出来”暂时分开。先用一小段时间确定这一轮的目标，执行时出现的新点子就记下来，不立刻接管现场。想法需要被保存，但不需要每个都获得紧急通行证。</p>
+        <h2 data-zh="02 / 待办应该能看出怎么结束" data-en="02 / A task should reveal where it ends">02 / 待办应该能看出怎么结束</h2>
+        <p data-zh="“完善战斗系统”看起来像任务，实际上像一个可以无限续租的房间。怎样才算完善？伤害计算、敌人行为、反馈动画、数值平衡都能往里塞，做多久都可以继续说还没完善。" data-en="“Improve the combat system” looks like a task but behaves like a room with an endlessly renewable lease. What counts as improved? Damage calculation, enemy behavior, feedback animations, and balance can all move in. No matter how long you work, it can still be declared unfinished.">“完善战斗系统”看起来像任务，实际上像一个可以无限续租的房间。怎样才算完善？伤害计算、敌人行为、反馈动画、数值平衡都能往里塞，做多久都可以继续说还没完善。</p>
+        <p data-zh="换成“玩家能完成一次战斗，胜负正确结算，并返回下一步流程”，边界就清楚多了。它不保证战斗已经足够好玩，但能形成一个可以检查的完整闭环。然后再单独问：决策是否有意义？反馈是否能看懂？节奏哪里拖沓？每个问题都比“再打磨一下”更容易推进。" data-en="“The player can finish one battle, receive the correct win or loss result, and return to the next step” has a clearer boundary. It does not guarantee fun combat, but it creates a complete loop that can be checked. Then ask separately: do decisions matter, is feedback understandable, and where does the pacing drag? Each question is easier to act on than “polish it some more.”">换成“玩家能完成一次战斗，胜负正确结算，并返回下一步流程”，边界就清楚多了。它不保证战斗已经足够好玩，但能形成一个可以检查的完整闭环。然后再单独问：决策是否有意义？反馈是否能看懂？节奏哪里拖沓？每个问题都比“再打磨一下”更容易推进。</p>
+        <h2 data-zh="03 / 范围管理，是替未来的自己挡刀" data-en="03 / Scope control protects your future self">03 / 范围管理，是替未来的自己挡刀</h2>
+        <p data-zh="一个新功能的成本，几乎从来不只有把它写出来。还要接界面、解释规则、制作内容、处理存档、补测试，最后让它和其他系统和平相处。新增时叫“顺手加一个”，维护时就变成了“这东西当初是谁加的”。答案通常就在镜子里。" data-en="A feature rarely costs only the time needed to implement it. It also needs interface integration, rule explanations, content, save handling, tests, and peaceful coexistence with other systems. On arrival it is “just one little addition.” During maintenance it becomes “who put this thing here?” The answer is usually in the mirror.">一个新功能的成本，几乎从来不只有把它写出来。还要接界面、解释规则、制作内容、处理存档、补测试，最后让它和其他系统和平相处。新增时叫“顺手加一个”，维护时就变成了“这东西当初是谁加的”。答案通常就在镜子里。</p>
+        <p data-zh="我认为砍范围不是把所有特色都砍掉，而是找出最值得保留的那个体验，把资源集中给它。如果游戏的核心乐趣来自一次有张力的选择，那么新增十种外围系统，未必比把这次选择的代价和反馈做清楚更有价值。内容多，不自动等于体验厚。" data-en="Cutting scope should not mean cutting every distinctive feature. It means identifying the experience most worth keeping and concentrating resources there. If the core appeal is one tense decision, ten peripheral systems may be less valuable than making that decision’s costs and feedback clear. More content does not automatically create a richer experience.">我认为砍范围不是把所有特色都砍掉，而是找出最值得保留的那个体验，把资源集中给它。如果游戏的核心乐趣来自一次有张力的选择，那么新增十种外围系统，未必比把这次选择的代价和反馈做清楚更有价值。内容多，不自动等于体验厚。</p>
+        <p data-zh="独立开发也不等于拒绝外部反馈。让别人玩一个边界明确的版本，观察他们在哪里犹豫、误解或失去兴趣，往往比自己再想一周更有效。最好先看，再问，少急着解释。玩家需要开发者站在旁边讲解才能成立的体验，离真正成立还有一段距离。" data-en="Solo development does not mean rejecting outside feedback. Watching someone play a bounded build—where they hesitate, misunderstand, or lose interest—can be more useful than another week of thinking alone. Watch first, ask second, and resist explaining immediately. An experience that works only with the developer standing beside it still has some distance to go.">独立开发也不等于拒绝外部反馈。让别人玩一个边界明确的版本，观察他们在哪里犹豫、误解或失去兴趣，往往比自己再想一周更有效。最好先看，再问，少急着解释。玩家需要开发者站在旁边讲解才能成立的体验，离真正成立还有一段距离。</p>
+        <h2 data-zh="04 / 收工也是项目流程的一部分" data-en="04 / Stopping work is part of the workflow">04 / 收工也是项目流程的一部分</h2>
+        <p data-zh="一个人做项目，很容易把所有停下来都理解成落后。但脑子不是持续运行就能持续产出的服务器。疲劳的时候，简单问题会看起来像架构危机；第二天再看，可能只是一个条件写反了。为了证明今天很努力而继续熬着，有时是在给明天制造更多工作。" data-en="Working alone makes it easy to interpret every pause as falling behind. But the brain is not a server that keeps producing useful output just because it stays online. When tired, a simple problem can look like an architectural crisis. Tomorrow it may turn out to be a reversed condition. Staying late to prove today’s effort can create extra work for tomorrow.">一个人做项目，很容易把所有停下来都理解成落后。但脑子不是持续运行就能持续产出的服务器。疲劳的时候，简单问题会看起来像架构危机；第二天再看，可能只是一个条件写反了。为了证明今天很努力而继续熬着，有时是在给明天制造更多工作。</p>
+        <p data-zh="收工前留下几行交接，比硬撑着多改一点更有用：现在完成到哪，剩下什么，下一步先打开哪个文件。明天的自己不需要重新考古，今天的自己也就可以放心走神。毕竟团队只有一个人，交接文档还是不能省。" data-en="A few handoff notes at the end of the day can be more useful than forcing one more change: what is done, what remains, and which file to open first next time. Tomorrow’s self does not have to excavate the project, and today’s self can safely zone out. A one-person team still needs a handoff.">收工前留下几行交接，比硬撑着多改一点更有用：现在完成到哪，剩下什么，下一步先打开哪个文件。明天的自己不需要重新考古，今天的自己也就可以放心走神。毕竟团队只有一个人，交接文档还是不能省。</p>
+        <blockquote data-zh="独立开发不是证明一个人什么都能做，而是决定哪些事值得由这个人做完。" data-en="Solo development is not about proving one person can do everything. It is about deciding which things are worth that person finishing.">独立开发不是证明一个人什么都能做，而是决定哪些事值得由这个人做完。</blockquote>
+      </div>
+    </article>
+    <nav class="article-pagination" aria-label="文章导航" data-aria-zh="文章导航" data-aria-en="Article navigation"><a href="notes-ai-efficiency.html" data-zh="← 上一篇：AI 效率" data-en="← Previous: AI efficiency">← 上一篇：AI 效率</a><a href="notes.html" data-zh="返回杂谈 ↗" data-en="All notes ↗">返回杂谈 ↗</a></nav>
+  </main>
+  <footer class="article-footer"><span>© <span data-year>2026</span> BRUCY WU</span><a href="https://github.com/BruceWayne-Batty">GITHUB ↗</a></footer>
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

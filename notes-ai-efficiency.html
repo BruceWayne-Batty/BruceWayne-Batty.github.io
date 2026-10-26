@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI 到底省了谁的时间？聊聊 Prompt、验收标准，以及独立开发中真正有用的 AI 工作流。">
+  <meta name="theme-color" content="#0b0c0c">
+  <title>我用 AI 提高效率，然后花了一下午调 Prompt — Brucy Wu</title>
+  <link rel="canonical" href="https://brucewayne-batty.github.io/notes-ai-efficiency.html">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="我用 AI 提高效率，然后花了一下午调 Prompt — Brucy Wu">
+  <meta property="og:description" content="生成得快不等于完成得快。让 AI 帮忙之前，先想清楚什么才算做完。">
+  <meta property="og:url" content="https://brucewayne-batty.github.io/notes-ai-efficiency.html">
+  <meta property="og:image" content="https://brucewayne-batty.github.io/assets/images/social-card.png">
+  <meta property="og:image:alt" content="Brucy Wu — Obsidian Terminal">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="我用 AI 提高效率，然后花了一下午调 Prompt — Brucy Wu">
+  <meta name="twitter:description" content="聊聊 Prompt、验收标准，以及真正有用的 AI 工作流。">
+  <meta name="twitter:image" content="https://brucewayne-batty.github.io/assets/images/social-card.png">
+  <link rel="stylesheet" href="assets/css/obsidian.css">
+</head>
+<body data-title-zh="我用 AI 提高效率，然后花了一下午调 Prompt — Brucy Wu" data-title-en="I used AI to save time, then spent all afternoon prompting it — Brucy Wu">
+  <a class="skip-link" href="#main" data-zh="跳至正文" data-en="Skip to content">跳至正文</a>
+  <header class="site-header article-header">
+    <a class="wordmark" href="index.html" aria-label="BW_ — Brucy Wu 首页" data-aria-zh="BW_ — Brucy Wu 首页" data-aria-en="BW_ — Brucy Wu home"><span>BW</span><i></i></a>
+    <a class="article-home" href="notes.html" data-zh="← 脑内运行日志" data-en="← Runtime thoughts">← 脑内运行日志</a>
+    <div class="header-tools"><div class="language-switch" role="group" aria-label="语言" data-aria-zh="语言" data-aria-en="Language"><button type="button" data-lang="zh">中</button><span>/</span><button type="button" data-lang="en">EN</button></div></div>
+  </header>
+  <main class="article-shell" id="main" tabindex="-1">
+    <article>
+      <header class="article-heading">
+        <div class="article-meta"><code>LOG / 02</code><span data-zh="AI 效率 · 开发随笔" data-en="AI efficiency · Dev essay">AI 效率 · 开发随笔</span></div>
+        <h1 data-zh="我用 AI 提高效率，然后花了一下午调 Prompt" data-en="I used AI to save time, then spent all afternoon prompting it">我用 AI 提高效率，然后花了一下午调 Prompt</h1>
+        <p class="article-deck" data-zh="机器输出得很快。至于我有没有更早下班，是另一个问题。" data-en="The machine produces things quickly. Whether I get to finish earlier is a separate question.">机器输出得很快。至于我有没有更早下班，是另一个问题。</p>
+        <span class="article-byline">BY BRUCY WU</span>
+      </header>
+      <div class="article-body">
+        <p data-zh="“用 AI 节省时间”听起来像一条直线：把任务交出去，等结果，收工。实际更容易长成一个循环：描述需求，发现不对，补充要求，发现另一处不对，再补充。到了某一刻，你会发现自己已经不是在做任务，而是在研究如何让另一位参与者理解任务。只不过这位参与者不喝咖啡，按 Token 收费。" data-en="“Save time with AI” sounds like a straight line: hand over the task, wait for the result, finish. In practice, it can become a loop: explain the request, spot a problem, add a constraint, spot another problem, add another constraint. Eventually you are no longer doing the task; you are studying how to make another participant understand it. This participant skips coffee and charges by the token.">“用 AI 节省时间”听起来像一条直线：把任务交出去，等结果，收工。实际更容易长成一个循环：描述需求，发现不对，补充要求，发现另一处不对，再补充。到了某一刻，你会发现自己已经不是在做任务，而是在研究如何让另一位参与者理解任务。只不过这位参与者不喝咖啡，按 Token 收费。</p>
+        <h2 data-zh="01 / 生成速度不是交付速度" data-en="01 / Generation speed is not delivery speed">01 / 生成速度不是交付速度</h2>
+        <p data-zh="一段代码几秒钟生成，不代表它几秒钟就能进入项目。还要读懂、检查依赖、对齐现有结构、验证边界情况。如果生成结果越长，审查负担也越重，那么“写得更多”完全可能是在给未来的自己派活。" data-en="Code generated in seconds is not necessarily ready to enter a project in seconds. It still needs to be understood, checked for dependencies, aligned with the existing structure, and tested at the edges. If longer output creates more review work, “writing more” can simply mean assigning extra work to your future self.">一段代码几秒钟生成，不代表它几秒钟就能进入项目。还要读懂、检查依赖、对齐现有结构、验证边界情况。如果生成结果越长，审查负担也越重，那么“写得更多”完全可能是在给未来的自己派活。</p>
+        <p data-zh="我更关心的是总成本：解释任务花多久，等待和修改花多久，验证花多久，后续维护又花多久。AI 能不能提高效率，要看这一整条链，而不是只看屏幕上的字是不是像瀑布一样往下掉。瀑布很好看，但我主要想把水接进杯子。" data-en="The useful measure is total cost: time spent explaining, waiting, revising, verifying, and maintaining the result. AI’s efficiency has to be judged across that whole chain, not by how impressively text cascades down the screen. Waterfalls are lovely. I mostly need the water to land in a cup.">我更关心的是总成本：解释任务花多久，等待和修改花多久，验证花多久，后续维护又花多久。AI 能不能提高效率，要看这一整条链，而不是只看屏幕上的字是不是像瀑布一样往下掉。瀑布很好看，但我主要想把水接进杯子。</p>
+        <h2 data-zh="02 / 很多 Prompt 问题，其实是需求问题" data-en="02 / Many prompt problems are specification problems">02 / 很多 Prompt 问题，其实是需求问题</h2>
+        <p data-zh="“帮我把这个功能做好”不是一个清晰的委托。好到什么程度？不能改哪些接口？能不能加依赖？失败以后应该怎么表现？如果这些问题连我自己都没有答案，模型就只能替我猜。它猜得越自信，我审查时越费劲。" data-en="“Make this feature good” is not a clear assignment. How good? Which interfaces must remain unchanged? Are new dependencies allowed? What should happen on failure? If I cannot answer these questions myself, the model has to guess. The more confidently it guesses, the harder the review becomes.">“帮我把这个功能做好”不是一个清晰的委托。好到什么程度？不能改哪些接口？能不能加依赖？失败以后应该怎么表现？如果这些问题连我自己都没有答案，模型就只能替我猜。它猜得越自信，我审查时越费劲。</p>
+        <p data-zh="比如让 AI 帮忙处理图片生成流程，与其要求“做得稳定一点”，不如明确：输入有哪些字段，文件存到哪里，如何避免覆盖同名文件，接口失败时返回什么，密钥不能写进日志。这不是神奇咒语，只是把本来藏在脑子里的验收条件拿出来。" data-en="For an image-generation workflow, “make it more reliable” is less useful than specifying the input fields, where files are saved, how filename collisions are avoided, what an API failure returns, and that secrets must never appear in logs. This is not a magic incantation. It is bringing acceptance criteria out of your head and onto the page.">比如让 AI 帮忙处理图片生成流程，与其要求“做得稳定一点”，不如明确：输入有哪些字段，文件存到哪里，如何避免覆盖同名文件，接口失败时返回什么，密钥不能写进日志。这不是神奇咒语，只是把本来藏在脑子里的验收条件拿出来。</p>
+        <p data-zh="这一步即使最后不用 AI，也不会白做。写清楚以后，有时会发现任务并没有想象中复杂，自己改几行就结束了。那就自己改。工具没有获得出场机会，不等于工具受到了伤害。" data-en="That work is not wasted even if AI never gets used. Once the task is clear, it sometimes turns out to need only a few lines changed by hand. Then change them by hand. A tool does not suffer because it was left on the bench.">这一步即使最后不用 AI，也不会白做。写清楚以后，有时会发现任务并没有想象中复杂，自己改几行就结束了。那就自己改。工具没有获得出场机会，不等于工具受到了伤害。</p>
+        <h2 data-zh="03 / 把任务拆到可以验证" data-en="03 / Make the task small enough to verify">03 / 把任务拆到可以验证</h2>
+        <p data-zh="我倾向于把 AI 放在边界清楚的环节里：解释一段陌生代码，列出潜在边界条件，为一个确定接口补测试，或者提供几个可比较的文案方向。它们的共同点不是简单，而是结果有办法检查。" data-en="I prefer using AI for bounded work: explaining unfamiliar code, listing possible edge cases, adding tests for a defined interface, or offering a few copy directions to compare. What these tasks share is not simplicity, but that their results can be checked.">我倾向于把 AI 放在边界清楚的环节里：解释一段陌生代码，列出潜在边界条件，为一个确定接口补测试，或者提供几个可比较的文案方向。它们的共同点不是简单，而是结果有办法检查。</p>
+        <p data-zh="涉及实现时，先让它说明准备改哪里、为什么改，再看小范围的差异，比一次拿到整个系统的重写更容易控制。涉及测试时，也要检查断言是否独立于实现：如果代码和测试一起误解了需求，它们可以非常团结地一起通过。" data-en="For implementation work, asking what will change and why, then reviewing a small diff, is easier to control than receiving a rewrite of the entire system. For tests, check that the assertions are grounded in the requirements rather than copied from the implementation. Code and tests can misunderstand the same requirement and pass together in perfect solidarity.">涉及实现时，先让它说明准备改哪里、为什么改，再看小范围的差异，比一次拿到整个系统的重写更容易控制。涉及测试时，也要检查断言是否独立于实现：如果代码和测试一起误解了需求，它们可以非常团结地一起通过。</p>
+        <p data-zh="至于“这个设计到底好不好玩”，AI 可以帮忙提出假设，却不能替玩家完成试玩。语言上的自洽，不等于手里的体验成立。一个机制被解释得很精彩，和它真的让人愿意再玩一局，中间还隔着整个游戏。" data-en="As for whether a design is actually fun, AI can propose hypotheses but cannot replace players trying it. A coherent explanation is not proof of a satisfying experience. Between a beautifully described mechanic and someone wanting another round lies the whole game.">至于“这个设计到底好不好玩”，AI 可以帮忙提出假设，却不能替玩家完成试玩。语言上的自洽，不等于手里的体验成立。一个机制被解释得很精彩，和它真的让人愿意再玩一局，中间还隔着整个游戏。</p>
+        <h2 data-zh="04 / 给优化本身设一个停止条件" data-en="04 / Give optimization a stopping rule">04 / 给优化本身设一个停止条件</h2>
+        <p data-zh="反复调 Prompt 最容易让人上头的地方，是每一轮都像“只差一点”。但如果几轮以后仍然在纠正同一种误解，就该换方法：缩小任务，补一个具体例子，换成确定性的脚本，或者直接手动处理。不要因为前面已经花了时间，就继续给时间追加预算。" data-en="Repeated prompting is seductive because every round feels “almost there.” But if several rounds keep correcting the same misunderstanding, change the approach: shrink the task, add a concrete example, use a deterministic script, or do it manually. Time already spent is not a reason to keep increasing the budget.">反复调 Prompt 最容易让人上头的地方，是每一轮都像“只差一点”。但如果几轮以后仍然在纠正同一种误解，就该换方法：缩小任务，补一个具体例子，换成确定性的脚本，或者直接手动处理。不要因为前面已经花了时间，就继续给时间追加预算。</p>
+        <p data-zh="真正值得留下来的，不是一条越来越长的万能 Prompt，而是一套可复用的约束、几个可靠的示例和一条验证路径。让下一次同类任务少解释一点、少猜一点、少返工一点，效率才会慢慢积累。" data-en="What is worth keeping is not an ever-longer universal prompt, but reusable constraints, a few reliable examples, and a way to verify the result. Efficiency accumulates when the next similar task requires a little less explanation, guessing, and rework.">真正值得留下来的，不是一条越来越长的万能 Prompt，而是一套可复用的约束、几个可靠的示例和一条验证路径。让下一次同类任务少解释一点、少猜一点、少返工一点，效率才会慢慢积累。</p>
+        <blockquote data-zh="AI 最有用的状态，不是替我显得很忙，而是让我少做一点没必要的事。" data-en="AI is most useful not when it makes me look busy, but when it helps me do less unnecessary work.">AI 最有用的状态，不是替我显得很忙，而是让我少做一点没必要的事。</blockquote>
+      </div>
+    </article>
+    <nav class="article-pagination" aria-label="文章导航" data-aria-zh="文章导航" data-aria-en="Article navigation"><a href="notes-last-bug.html" data-zh="← 上一篇：Bug 考古" data-en="← Previous: Bug archaeology">← 上一篇：Bug 考古</a><a href="notes-solo-development.html" data-zh="下一篇：独立开发 ↗" data-en="Next: Solo development ↗">下一篇：独立开发 ↗</a></nav>
+    <a class="article-back" href="notes.html" data-zh="← 返回全部杂谈" data-en="← All notes">← 返回全部杂谈</a>
+  </main>
+  <footer class="article-footer"><span>© <span data-year>2026</span> BRUCY WU</span><a href="https://github.com/BruceWayne-Batty">GITHUB ↗</a></footer>
+  <script src="assets/js/site.js" defer></script>
+</body>
+</html>

@@ -36,8 +36,8 @@
     <nav class="site-nav" id="site-nav" data-site-nav aria-label="主导航" data-aria-zh="主导航" data-aria-en="Main navigation">
       <a href="#home" data-section-link><small>00</small><span data-zh="主页" data-en="Home">主页</span></a>
       <a href="#about" data-section-link><small>01</small><span data-zh="简介" data-en="About">简介</span></a>
-      <a href="#projects" data-section-link><small>02</small><span data-zh="项目" data-en="Projects">项目</span></a>
-      <a href="#notes" data-section-link><small>03</small><span data-zh="杂谈" data-en="Notes">杂谈</span></a>
+      <a href="projects.html"><small>02</small><span data-zh="项目" data-en="Projects">项目</span></a>
+      <a href="notes.html"><small>03</small><span data-zh="杂谈" data-en="Notes">杂谈</span></a>
     </nav>
     <div class="header-tools">
       <span class="availability"><i></i><span data-zh="欢迎讨论新点子，离谱的也可以" data-en="Open to new ideas. Questionable ones too.">欢迎讨论新点子，离谱的也可以</span></span>
@@ -92,7 +92,7 @@
     <section class="projects section-shell" id="projects">
       <header class="section-heading reveal">
         <div><span>02</span><code>projects.that_survived</code></div>
-        <h2 data-zh="能见人的项目" data-en="The presentable ones">能见人的项目</h2>
+        <h2 class="section-title" data-zh="能见人的项目" data-en="The presentable ones">能见人的项目</h2>
       </header>
       <div class="project-list">
         <article class="project-card reveal">
@@ -100,30 +100,23 @@
           <div class="project-image image-one" role="img" aria-label="Slots Champion 元素转轮概念图，非实际游戏截图" data-aria-zh="Slots Champion 元素转轮概念图，非实际游戏截图" data-aria-en="Slots Champion elemental reels concept art, not a gameplay screenshot"></div>
           <div class="project-info"><h3 class="long-title">Slots Champion</h3><p data-zh="把牌组构筑塞进三组元素转轮：转、锁、重转，再把能量喂给卡牌。第一章已完整可玩，192 项测试全绿——游戏可以靠运气，代码最好别。" data-en="Deckbuilding through three elemental reels: spin, lock, reroll, then feed the energy into cards. Chapter One is fully playable, with 192 tests passing—luck belongs in the game, not the code.">把牌组构筑塞进三组元素转轮：转、锁、重转，再把能量喂给卡牌。第一章已完整可玩，192 项测试全绿——游戏可以靠运气，代码最好别。</p><span>GODOT 4 · C# · GDUNIT4</span></div>
         </article>
-        <article class="project-card reveal">
-          <div class="project-meta"><span>UTILITY</span><span>AI / MCP SERVER</span></div>
-          <div class="project-image image-two" role="img" aria-label="NEW API Image MCP 协议路由与本地图片流程概念图" data-aria-zh="NEW API Image MCP 协议路由与本地图片流程概念图" data-aria-en="NEW API Image MCP protocol routing and local image workflow concept art"></div>
-          <div class="project-info"><h3 class="long-title">NEW API Image MCP</h3><p data-zh="让 MCP 客户端通过 OpenAI 或 Gemini 协议生成、编辑图片，并自动保存到本地。配置一次，多端共用——Key 藏在该藏的地方，不藏在 Git 历史里。" data-en="An MCP server that generates and edits images through OpenAI or Gemini protocols, then saves them locally. Configure it once and share it across clients—the key stays where secrets belong, not in Git history.">让 MCP 客户端通过 OpenAI 或 Gemini 协议生成、编辑图片，并自动保存到本地。配置一次，多端共用——Key 藏在该藏的地方，不藏在 Git 历史里。</p><span>TYPESCRIPT · MCP · OPENAI / GEMINI</span><div class="project-access"><a href="https://github.com/BruceWayne-Batty/Local-Image-MCP" data-zh="查看源码 ↗" data-en="View source ↗">查看源码 ↗</a></div></div>
-        </article>
-        <article class="project-card reveal">
-          <div class="project-meta"><span>PROTOTYPE</span><span>WEB3 / CHARITY</span></div>
-          <div class="project-image image-three" role="img" aria-label="Charity Token 合约资金池与分配流程概念图" data-aria-zh="Charity Token 合约资金池与分配流程概念图" data-aria-en="Charity Token smart-contract fund pool and distribution concept art"></div>
-          <div class="project-info"><h3>Charity Token</h3><p data-zh="把 ERC20 代币、ERC721 纪念 NFT 和资金池合约放进同一套慈善捐赠系统，支持本地与 BSC 测试网。善意可以上链，Gas 费还是得自己付。" data-en="A charity donation system combining an ERC20 token, ERC721 commemorative NFTs, and a fund-pool contract, with local and BSC testnet support. Good intentions can go on-chain; gas fees still cannot.">把 ERC20 代币、ERC721 纪念 NFT 和资金池合约放进同一套慈善捐赠系统，支持本地与 BSC 测试网。善意可以上链，Gas 费还是得自己付。</p><span>SOLIDITY · HARDHAT · ETHERS.JS</span></div>
-        </article>
       </div>
+      <div class="section-actions reveal"><a class="button button-outline" href="projects.html" data-zh="查看更多项目 ↗" data-en="View more ↗">查看更多项目 ↗</a></div>
     </section>
 
+    <!-- Homepage preview: keep at most three notes; the complete list belongs in notes.html. -->
     <section class="notes section-shell" id="notes">
       <header class="section-heading reveal">
         <div><span>03</span><code>thoughts.dump</code></div>
-        <h2 data-zh="脑内运行日志" data-en="Runtime thoughts">脑内运行日志</h2>
+        <h2 class="section-title" data-zh="脑内运行日志" data-en="Runtime thoughts">脑内运行日志</h2>
       </header>
-      <div class="notes-intro reveal"><p data-zh="一些关于游戏、AI 和 Bug 的选题。正文还在整理，下面是待发布清单，不是假装已经写完的文章。" data-en="Topics on games, AI, and bugs. The articles are still taking shape—this is a writing queue, not a list of published posts.">一些关于游戏、AI 和 Bug 的选题。正文还在整理，下面是待发布清单，不是假装已经写完的文章。</p></div>
+      <div class="notes-intro reveal"><p data-zh="一些关于游戏、AI 和 Bug 的杂谈。不是成功学，是把问题想清楚之前，先把吐槽写下来。" data-en="Notes on games, AI, and bugs. Not a recipe for success—just a few thoughts, with the complaints left in.">一些关于游戏、AI 和 Bug 的杂谈。不是成功学，是把问题想清楚之前，先把吐槽写下来。</p></div>
       <div class="notes-list">
-        <article class="note-row reveal"><code>QUEUE / 01</code><h3 data-zh="为什么“最后一个 Bug”总有家属？" data-en="Why does the “last bug” always have a family?">为什么“最后一个 Bug”总有家属？</h3><span data-zh="Bug 考古 · 待发布" data-en="Bug archaeology · Upcoming">Bug 考古 · 待发布</span></article>
-        <article class="note-row reveal"><code>QUEUE / 02</code><h3 data-zh="我用 AI 提高效率，然后花了一下午调 Prompt" data-en="I used AI to save time, then spent all afternoon prompting it">我用 AI 提高效率，然后花了一下午调 Prompt</h3><span data-zh="AI 效率 · 待发布" data-en="AI efficiency · Upcoming">AI 效率 · 待发布</span></article>
-        <article class="note-row reveal"><code>QUEUE / 03</code><h3 data-zh="独立开发：一个人同时开会、执行和走神" data-en="Solo development: holding the meeting, doing the work, and zoning out">独立开发：一个人同时开会、执行和走神</h3><span data-zh="独立开发 · 待发布" data-en="Solo development · Upcoming">独立开发 · 待发布</span></article>
+        <a class="note-row reveal" href="notes-last-bug.html"><code>LOG / 01</code><h3 data-zh="为什么“最后一个 Bug”总有家属？" data-en="Why does the “last bug” always have a family?">为什么“最后一个 Bug”总有家属？</h3><span data-zh="Bug 考古 · 阅读 ↗" data-en="Bug archaeology · Read ↗">Bug 考古 · 阅读 ↗</span></a>
+        <a class="note-row reveal" href="notes-ai-efficiency.html"><code>LOG / 02</code><h3 data-zh="我用 AI 提高效率，然后花了一下午调 Prompt" data-en="I used AI to save time, then spent all afternoon prompting it">我用 AI 提高效率，然后花了一下午调 Prompt</h3><span data-zh="AI 效率 · 阅读 ↗" data-en="AI efficiency · Read ↗">AI 效率 · 阅读 ↗</span></a>
+        <a class="note-row reveal" href="notes-solo-development.html"><code>LOG / 03</code><h3 data-zh="独立开发：一个人同时开会、执行和走神" data-en="Solo development: holding the meeting, doing the work, and zoning out">独立开发：一个人同时开会、执行和走神</h3><span data-zh="独立开发 · 阅读 ↗" data-en="Solo development · Read ↗">独立开发 · 阅读 ↗</span></a>
       </div>
+      <div class="section-actions reveal"><a class="button button-outline" href="notes.html" data-zh="查看更多文章 ↗" data-en="View more ↗">查看更多文章 ↗</a></div>
     </section>
   </main>
 

@@ -56,7 +56,7 @@
     </nav>
     <a class="article-back" href="{{ 'notes' | localePath(lang) }}">{% if lang == 'zh' %}← 返回随笔列表{% else %}← Back to notes{% endif %}</a>
   </main>
-  <footer class="article-footer"><span>© <span data-year>2026</span> BRUCY WU</span><a href="{{ site.github }}">GITHUB ↗</a></footer>
+  {% include "components/footer.njk" %}
   <script src="/assets/js/site.js" defer></script>
 </body>
 </html>

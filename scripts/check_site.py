@@ -24,6 +24,7 @@ class Document(HTMLParser):
         self.meta = {}
         self.links = []
         self.h1_count = 0
+        self.site_footer_count = 0
         self.html_lang = None
         self.canonical = None
         self.alternates = {}
@@ -37,6 +38,8 @@ class Document(HTMLParser):
             self.html_lang = attrs.get("lang")
         if tag == "h1":
             self.h1_count += 1
+        if tag == "footer" and "site-footer" in attrs.get("class", "").split():
+            self.site_footer_count += 1
         identifier = attrs.get("id")
         if identifier:
             if identifier in self.ids:
@@ -124,7 +127,11 @@ for source, document in documents.items():
                 errors.append(f"{source.relative_to(ROOT)}: missing anchor {reference}")
 
     noindex = "noindex" in document.meta.get("robots", "")
+    if source.name == "404.html" and document.site_footer_count != 1:
+        errors.append("404.html: expected exactly one shared site footer")
     if not noindex:
+        if document.site_footer_count != 1:
+            errors.append(f"{source.relative_to(ROOT)}: expected exactly one shared site footer")
         if document.html_lang not in ("zh-CN", "en"):
             errors.append(f"{source.relative_to(ROOT)}: invalid or missing html lang")
         for key in ("description", "og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:title", "twitter:description", "twitter:image"):

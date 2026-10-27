@@ -1,0 +1,74 @@
+---
+layout: layouts/page.njk
+pagination:
+  data: locales
+  size: 1
+  alias: locale
+pageKey: home
+permalink: "{{ locale.prefix }}index.html"
+---
+<main id="main" tabindex="-1">
+    <section class="hero" id="home">
+      <div class="hero-rail" aria-hidden="true"><span>PORTFOLIO.SYS</span><span>GAMES / AI APPLICATIONS</span></div>
+      <div class="hero-content">
+        <div class="eyebrow reveal"><span class="prompt">~/portfolio</span><span data-zh="独立个人开发者" data-en="Independent Solo Developer">独立个人开发者</span></div>
+        <h1 class="hero-name reveal"><span>BRUCY</span><span>WU<span class="cursor">_</span></span></h1>
+        <div class="hero-bottom reveal">
+          <p data-zh="创造前人未曾创造的东西。主要原因是前人通常比较理智。目前专注独立游戏和 AI 应用。" data-en="Building things no one has built before. Mostly because everyone else had better judgment. Currently focused on indie games and AI applications.">创造前人未曾创造的东西。主要原因是前人通常比较理智。目前专注独立游戏和 AI 应用。</p>
+          <a class="text-link" href="#projects"><span data-zh="看看什么活下来了" data-en="See what survived">看看什么活下来了</span><b>↘</b></a>
+        </div>
+      </div>
+      <div class="hero-status" aria-label="当前开发方向" data-aria-zh="当前开发方向" data-aria-en="Current focus">
+        <span>CURRENT_FOCUS</span><strong>INDIE GAMES</strong>
+        <span>ALSO_BUILDING</span><strong class="status-ok">AI APPLICATIONS</strong>
+      </div>
+    </section>
+
+    <section class="about section-shell" id="about">
+      <header class="section-heading reveal">
+        <div><span>01</span><code>about.behind_the_bugs</code></div>
+        <h2 data-zh="关于这个人" data-en="About this human">关于这个人</h2>
+      </header>
+      <div class="about-grid">
+        <div class="portrait-placeholder reveal" role="img" aria-label="预留个人照片位置" data-aria-zh="预留个人照片位置" data-aria-en="Personal photo placeholder">
+          <div class="placeholder-cross"></div>
+          <span>IMG_01 / 4:5</span>
+          <small data-zh="本人照片，理论上" data-en="Me, allegedly">本人照片，理论上</small>
+        </div>
+        <div class="about-copy reveal">
+          <p class="lead" data-zh="我做游戏的理念来自郭德纲的一句话：相声要是不好笑，那就太好笑了。同样，游戏要是不好玩，那就太好玩了。" data-en="My philosophy is simple: when comedy fails to make people laugh, it becomes the joke. Games are no different—if a game isn't fun, the joke is on the game.">我做游戏的理念来自郭德纲的一句话：相声要是不好笑，那就太好笑了。同样，游戏要是不好玩，那就太好玩了。</p>
+          <p data-zh="我拥有计算机科学与工程学士学位，以及交互媒体技术与设计硕士学位——读了这么多年，至少现在报错能看懂一点。我创立了 AI Charity Token，也曾在 Goodluck Studio / Winner Studio 参与多个项目。无敌勇士是其在中国大陆的公司主体，不是我偷偷做的一款游戏，虽然名字确实很像。" data-en="I hold a bachelor's degree in Computer Science and Engineering and a master's degree in Interactive Media Technology and Design—after all those years, error messages are at least slightly less mysterious. I founded AI Charity Token and worked across multiple projects at Goodluck Studio / Winner Studio. Invincible Warriors is their corporate entity in mainland China, not a game I secretly shipped, although the name does suggest otherwise.">我拥有计算机科学与工程学士学位，以及交互媒体技术与设计硕士学位——读了这么多年，至少现在报错能看懂一点。我创立了 AI Charity Token，也曾在 Goodluck Studio / Winner Studio 参与多个项目。无敌勇士是其在中国大陆的公司主体，不是我偷偷做的一款游戏，虽然名字确实很像。</p>
+          <a class="inline-contact" href="https://github.com/BruceWayne-Batty"><span data-zh="在 GitHub 看看我写的其他东西" data-en="See what else I'm building on GitHub">在 GitHub 看看我写的其他东西</span> ↗</a>
+        </div>
+        <dl class="capabilities reveal">
+          <div><dt>01</dt><dd data-zh="Unity / Godot —— 两个引擎，一份时间" data-en="Unity / Godot — two engines, one calendar">Unity / Godot —— 两个引擎，一份时间</dd></div>
+          <div><dt>02</dt><dd data-zh="C# / C / C++ —— 加号越多，头发越少" data-en="C# / C / C++ — more plus signs, fewer hairs">C# / C / C++ —— 加号越多，头发越少</dd></div>
+          <div><dt>03</dt><dd data-zh="Python / AI —— 让机器工作，我负责等它报错" data-en="Python / AI — machines do the work; I wait for the errors">Python / AI —— 让机器工作，我负责等它报错</dd></div>
+          <div><dt>04</dt><dd data-zh="游戏设计 —— 把想法变成可以玩的 Bug" data-en="Game design — turning ideas into playable bugs">游戏设计 —— 把想法变成可以玩的 Bug</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="projects section-shell" id="projects">
+      <header class="section-heading reveal">
+        <div><span>02</span><code>projects.that_survived</code></div>
+        <h2 class="section-title" data-zh="能见人的项目" data-en="The presentable ones">能见人的项目</h2>
+      </header>
+      <div class="project-list">
+        {% for project in projects | limit(1) %}{% include "components/project-card.njk" %}{% endfor %}
+      </div>
+      <div class="section-actions reveal"><a class="button button-outline" href="{{ 'projects' | localePath(locale.code) }}" data-zh="查看更多项目 ↗" data-en="View more ↗">查看更多项目 ↗</a></div>
+    </section>
+
+    <!-- Homepage preview: the build keeps the latest three localized notes. -->
+    <section class="notes section-shell" id="notes">
+      <header class="section-heading reveal">
+        <div><span>03</span><code>thoughts.dump</code></div>
+        <h2 class="section-title" data-zh="脑内运行日志" data-en="Runtime thoughts">脑内运行日志</h2>
+      </header>
+      <div class="notes-intro reveal"><p data-zh="一些关于游戏、AI 和 Bug 的杂谈。不是成功学，是把问题想清楚之前，先把吐槽写下来。" data-en="Notes on games, AI, and bugs. Not a recipe for success—just a few thoughts, with the complaints left in.">一些关于游戏、AI 和 Bug 的杂谈。不是成功学，是把问题想清楚之前，先把吐槽写下来。</p></div>
+      <div class="notes-list">{% set localizedNotes = collections.publishedNotes | localeNotes(locale.code) %}{% set localizedNotes = localizedNotes | limit(3) %}
+{% for note in localizedNotes %}<a class="note-row reveal" href="{{ note.data.slug | notePath(locale.code) }}"><code>LOG / {{ note.data.logNumber | padNumber }}</code><h3>{{ note.data.title }}</h3><span>{{ note.data.category }} · {% if locale.code == 'zh' %}阅读{% else %}Read{% endif %} ↗</span></a>{% endfor %}</div>
+      <div class="section-actions reveal"><a class="button button-outline" href="{{ 'notes' | localePath(locale.code) }}" data-zh="查看更多文章 ↗" data-en="View more ↗">查看更多文章 ↗</a></div>
+    </section>
+  </main>

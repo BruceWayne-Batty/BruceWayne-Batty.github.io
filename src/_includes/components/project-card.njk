@@ -1,0 +1,5 @@
+<article class="project-card reveal">
+  <div class="project-meta"><span>{{ project.status }}</span><span>{{ project.type }}</span></div>
+  <div class="project-image {{ project.imageClass }}" role="img" aria-label="{{ project.imageAlt[locale.code] }}"></div>
+  <div class="project-info"><h3{% if project.longTitle %} class="long-title"{% endif %}>{{ project.title }}</h3><p>{{ project.description[locale.code] }}</p><span>{{ project.stack }}</span>{% if project.url %}<div class="project-access"><a href="{{ project.url }}">{% if locale.code == 'zh' %}查看源码{% else %}View source{% endif %} ↗</a></div>{% endif %}</div>
+</article>

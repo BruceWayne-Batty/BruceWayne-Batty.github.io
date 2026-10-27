@@ -1,0 +1,16 @@
+{% set switchRoute = languageRoute if languageRoute else pages[pageKey].route %}<header class="site-header">
+  <a class="wordmark" href="{% if pageKey == 'home' %}#home{% else %}{{ pages.home.route | localePath(locale.code) }}{% endif %}" aria-label="{% if locale.code == 'zh' %}BW_ — Brucy Wu 首页{% else %}BW_ — Brucy Wu home{% endif %}"><span>BW</span><i></i></a>
+  <button class="menu-toggle" type="button" aria-label="{% if locale.code == 'zh' %}切换导航菜单{% else %}Toggle navigation menu{% endif %}" data-menu-toggle aria-expanded="false" aria-controls="site-nav"><span>{% if locale.code == 'zh' %}菜单{% else %}Menu{% endif %}</span><b></b></button>
+  <nav class="site-nav" id="site-nav" data-site-nav aria-label="{% if locale.code == 'zh' %}主导航{% else %}Main navigation{% endif %}">
+    <a href="{% if pageKey == 'home' %}#home{% else %}{{ pages.home.route | localePath(locale.code) }}{% endif %}"{% if pageKey == 'home' %} class="is-active" aria-current="location" data-section-link{% endif %}><small>00</small><span>{% if locale.code == 'zh' %}主页{% else %}Home{% endif %}</span></a>
+    <a href="{% if pageKey == 'home' %}#about{% else %}{{ pages.home.route | localePath(locale.code) }}#about{% endif %}"{% if pageKey == 'home' %} data-section-link{% endif %}><small>01</small><span>{% if locale.code == 'zh' %}简介{% else %}About{% endif %}</span></a>
+    <a href="{{ pages.projects.route | localePath(locale.code) }}"{% if pageKey == 'projects' %} class="is-active" aria-current="page"{% endif %}><small>02</small><span>{% if locale.code == 'zh' %}项目{% else %}Projects{% endif %}</span></a>
+    <a href="{{ pages.notes.route | localePath(locale.code) }}"{% if pageKey == 'notes' %} class="is-active" aria-current="page"{% endif %}><small>03</small><span>{% if locale.code == 'zh' %}杂谈{% else %}Notes{% endif %}</span></a>
+  </nav>
+  <div class="header-tools">
+    <span class="availability"><i></i><span>{% if locale.code == 'zh' %}欢迎讨论新点子，离谱的也可以{% else %}Open to new ideas. Questionable ones too.{% endif %}</span></span>
+    <nav class="language-switch" aria-label="{% if locale.code == 'zh' %}语言{% else %}Language{% endif %}">
+      <a href="{{ switchRoute | localePath('zh') }}" lang="zh-CN"{% if locale.code == 'zh' %} class="is-active" aria-current="page"{% endif %}>中</a><span>/</span><a href="{{ switchRoute | localePath('en') }}" lang="en"{% if locale.code == 'en' %} class="is-active" aria-current="page"{% endif %}>EN</a>
+    </nav>
+  </div>
+</header>

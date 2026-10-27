@@ -1,0 +1,20 @@
+---
+layout: layouts/page.njk
+pagination:
+  data: locales
+  size: 1
+  alias: locale
+pageKey: notes
+permalink: "{{ locale.prefix }}notes/index.html"
+---
+<main class="listing-page" id="main" tabindex="-1">
+    <section class="notes section-shell" id="notes">
+      <header class="section-heading reveal">
+        <div><span>03</span><code>thoughts.dump</code></div>
+        <h1 class="section-title" data-zh="脑内运行日志" data-en="Runtime thoughts">脑内运行日志</h1>
+      </header>
+      <div class="notes-intro reveal"><p data-zh="一些关于游戏、AI 和 Bug 的杂谈。不是成功学，是把问题想清楚之前，先把吐槽写下来。" data-en="Notes on games, AI, and bugs. Not a recipe for success—just a few thoughts, with the complaints left in.">一些关于游戏、AI 和 Bug 的杂谈。不是成功学，是把问题想清楚之前，先把吐槽写下来。</p></div>
+      <div class="notes-list">{% set localizedNotes = collections.publishedNotes | localeNotes(locale.code) %}
+{% for note in localizedNotes %}<a class="note-row reveal" href="{{ note.data.slug | notePath(locale.code) }}"><code>LOG / {{ note.data.logNumber | padNumber }}</code><h3>{{ note.data.title }}</h3><span>{{ note.data.category }} · {% if locale.code == 'zh' %}阅读{% else %}Read{% endif %} ↗</span></a>{% endfor %}</div>
+    </section>
+  </main>

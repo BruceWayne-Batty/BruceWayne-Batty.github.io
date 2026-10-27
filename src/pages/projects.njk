@@ -1,0 +1,20 @@
+---
+layout: layouts/page.njk
+pagination:
+  data: locales
+  size: 1
+  alias: locale
+pageKey: projects
+permalink: "{{ locale.prefix }}projects/index.html"
+---
+<main class="listing-page" id="main" tabindex="-1">
+    <section class="projects section-shell" id="projects">
+      <header class="section-heading reveal">
+        <div><span>02</span><code>projects.that_survived</code></div>
+        <h1 class="section-title" data-zh="能见人的项目" data-en="The presentable ones">能见人的项目</h1>
+      </header>
+      <div class="project-list">
+        {% for project in projects %}{% include "components/project-card.njk" %}{% endfor %}
+      </div>
+    </section>
+  </main>

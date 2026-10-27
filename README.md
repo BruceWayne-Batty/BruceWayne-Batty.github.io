@@ -1,62 +1,89 @@
 # Brucy Wu — Portfolio
 
-暗色、平面、双语的 Obsidian Terminal / 黑曜终端个人主页。纯 HTML、CSS 和 JavaScript，无构建步骤。
+Eleventy 构建的双语静态个人网站。中文使用根路径，英文使用 `/en/`；最终产物位于 `_site`。
 
-主页（`index.html`）保留个人简介、一个项目预览和最多三篇杂谈预览。完整项目与杂谈列表分别位于 `projects.html` 和 `notes.html`；导航中的 About 返回主页简介位置，Projects / Notes 打开独立页面。支持中英文切换、响应式布局、键盘操作与减少动态效果偏好。禁用 JavaScript 时，中文正文和导航仍可使用。
+## 本地开发
 
-## 本地预览与检查
-
-在仓库根目录运行：
+需要 Node.js 22+：
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev
 ```
 
-打开 `http://localhost:8000`。静态资源、锚点和双语属性检查：
+构建和完整检查：
 
 ```bash
-python3 scripts/check_site.py
-node --check assets/js/site.js
+npm run build
+npm test
 ```
+
+检查会验证站内链接、锚点、双语 SEO、canonical、hreflang、sitemap、JSON-LD、首页最新三篇 Notes，以及分享图片。
+
+## 添加 Note
+
+在 `notes/<slug>/` 中创建 `zh.md`、`en.md` 或其中任意一个。缺少翻译是允许的；页面语言切换处会显示暂无翻译。
+
+```yaml
+---
+title: "文章标题"
+description: "用于搜索和分享的摘要"
+deck: "文章页标题下的引言"
+category: "开发随笔"
+slug: "stable-slug"
+lang: zh
+translationKey: "stable-slug"
+author: brucy
+date: 2026-10-27
+updated: 2026-10-27
+logNumber: 6
+noteTags: [ai, solo-development]
+tags: [notes]
+draft: false
+layout: layouts/note.njk
+permalink: "/notes/stable-slug/index.html"
+---
+```
+
+英文 permalink 使用 `/en/notes/stable-slug/index.html`。`slug` 和 `translationKey` 应保持稳定；修改标题不会改变 URL。作者与 Tag 必须先在 `src/_data/authors.json` 和 `src/_data/tagDefinitions.json` 中登记。
+
+正文引用其他 Note 时使用稳定 ID：
+
+```liquid
+{% noteLink "local-image-mcp", "Local Image MCP 开发记录", lang %}
+```
+
+构建器优先链接同语言版本；不存在时链接已有语言并标注语言；目标完全不存在则构建失败。列表、首页最新三篇、作者/Tag 分类和上一篇/下一篇均自动生成。
+
+设置 `draft: true` 可阻止文章输出和进入集合。发布时改为 `false`。
+
+## 内容与模板
+
+- `notes/`：Markdown Notes
+- `src/pages/`：首页、项目、列表、分类、sitemap、404 和兼容跳转模板
+- `src/_includes/`：公共布局和组件
+- `src/_data/`：作者、Tag、项目、站点和页面 metadata
+- `assets/`：样式、脚本和图片
+- `eleventy.config.js`：路由、集合、内容校验及构建过滤器
+- `scripts/check_site.py`：生成站点检查
+
+## URL 与 SEO
+
+主要路由：
+
+```text
+/                              /en/
+/projects/                     /en/projects/
+/notes/                        /en/notes/
+/notes/<slug>/                 /en/notes/<slug>/
+/notes/tags/<tag>/             /en/notes/tags/<tag>/
+/notes/authors/<author>/       /en/notes/authors/<author>/
+```
+
+每个页面拥有独立语言的 metadata、自引用 canonical 和真实存在的 hreflang。旧的 `notes-*.html`、`notes.html` 和 `projects.html` 会生成 `noindex` 兼容页。
 
 ## 发布
 
-在 GitHub 仓库的 **Settings → Pages** 中选择要发布的分支及根目录 `/`。网站按用户主页根路径部署：`https://brucewayne-batty.github.io/`。
+`.github/workflows/pages.yml` 在推送 `main` 后执行 `npm ci`、测试、构建并部署 `_site`。首次使用时，在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
 
-- `404.html`：GitHub Pages 自定义错误页。本地 HTTP server 不会自动调用它，可直接访问 `/404.html` 检查样式。
-- `robots.txt` / `sitemap.xml`：允许索引并提供主页、Projects、Notes 和四篇文章的地址。
-- `assets/images/favicon.svg`：站点图标。
-- `assets/images/social-card.png`：1200 × 630 分享预览；设计源文件为同目录 `social-card.svg`，修改后须重新导出 PNG。
-- 如改域名，需同步更新主页、列表页及文章页中的 canonical、Open Graph / Twitter 地址，以及 `robots.txt`、`sitemap.xml`。
-
-## 内容维护
-
-- 页面文案的中文 / 英文分别在 `data-zh` / `data-en` 中；修改中文属性时，也应同步修改元素正文，保持无 JavaScript 的中文版本一致。
-- 辅助技术标签的双语内容在 `data-aria-zh` / `data-aria-en` 中。
-- 页脚以 “Find Me Anywhere” 标题搭配圆形描边 GitHub 图标按钮，简介也链接到真实 GitHub 主页，页脚另有本站源码入口。新增联系方式时在 `.social-links` 中添加 `.social-button`，使用真实地址、图标和双语辅助标签；尚未添加邮箱、其他社交账号或联系表单。
-- MCP 项目的源码入口为 [Local-Image-MCP](https://github.com/BruceWayne-Batty/Local-Image-MCP)。Slots Champion 和 Charity Token 暂不提供源码或链接，仅展示项目介绍，不显示“链接待补充”提示。
-- 完整项目列表维护在 `projects.html`；首页 `.project-list` 只保留一个精选项目。
-- 三篇杂谈正文分别位于 `notes-last-bug.html`、`notes-ai-efficiency.html`、`notes-solo-development.html`，共用站点样式及语言切换脚本。新增文章时更新 `notes.html` 的完整列表、文章间导航和 sitemap；首页 `.notes-list` 始终只保留三篇预览（不足三篇时全部展示），若更新预览需替换旧条目而非追加第四篇。站点检查会验证首页展示数量及预览是否存在于完整列表中。
-
-## 图片
-
-现有项目概念图：
-
-```text
-assets/images/slots-champion.webp
-assets/images/new-api-image-mcp.webp
-assets/images/charity-token.webp
-```
-
-图片生成方向参考 `IMAGE_PROMPTS.md`。概念图不应作为真实产品截图；后续建议补充实际运行截图或演示。
-
-个人照片目前为明确的视觉占位，不请求不存在的图片文件。获得真实照片后，可将照片放在 `assets/images/portrait.webp`，在 `.portrait-placeholder` 样式中使用该地址，并同步修改 `index.html` 的占位标签、图片说明与双语辅助标签。
-
-## 发布前手动检查
-
-- [ ] 确认项目描述、技术栈与实际实现一致，检查已提供的 MCP 源码链接；另外两个项目暂不提供链接。
-- [ ] 决定是否使用个人照片，替换占位或保留抽象视觉。
-- [ ] 确定是否提供邮箱或其他联系方式（当前仅有 GitHub 入口）。
-- [ ] 审阅现有三篇杂谈的中英文正文与文章间导航，确保 Notes 完整列表和主页三篇预览一致。
-- [ ] 检查手机与桌面、中英文、键盘 Tab / Escape、禁用 JavaScript、减少动态效果。
-- [ ] 部署后验证首页、未知路径的 404、分享预览图片及 sitemap。
+如修改域名，请同步修改 `src/_data/site.json`、`eleventy.config.js` 和 `robots.txt`。

@@ -1,0 +1,8 @@
+{
+  "ai": { "zh": "人工智能", "en": "AI" },
+  "app-store": { "zh": "App Store", "en": "App Store" },
+  "debugging": { "zh": "调试", "en": "Debugging" },
+  "game-development": { "zh": "游戏开发", "en": "Game development" },
+  "mcp": { "zh": "MCP", "en": "MCP" },
+  "solo-development": { "zh": "独立开发", "en": "Solo development" }
+}

@@ -1,0 +1,17 @@
+{
+  "home": {
+    "route": "",
+    "title": { "zh": "Brucy Wu — 黑曜终端", "en": "Brucy Wu — Obsidian Terminal" },
+    "description": { "zh": "Brucy Wu — 独立个人开发者，专注独立游戏与 AI 应用开发。", "en": "Brucy Wu — an independent developer focused on indie games and AI applications." }
+  },
+  "projects": {
+    "route": "projects",
+    "title": { "zh": "项目 — Brucy Wu", "en": "Projects — Brucy Wu" },
+    "description": { "zh": "Brucy Wu 的项目：独立游戏、AI 工具与慈善应用。", "en": "Projects by Brucy Wu: indie games, AI tools, and charitable applications." }
+  },
+  "notes": {
+    "route": "notes",
+    "title": { "zh": "杂谈 — Brucy Wu", "en": "Notes — Brucy Wu" },
+    "description": { "zh": "Brucy Wu 的杂谈：关于游戏、AI 和独立开发的脑内运行日志。", "en": "Notes by Brucy Wu about games, AI, bugs, and solo development." }
+  }
+}

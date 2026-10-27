@@ -1,47 +1,11 @@
 (() => {
   const root = document.documentElement;
   const body = document.body;
-  const translatable = document.querySelectorAll('[data-zh][data-en]');
-  const accessibleLabels = document.querySelectorAll('[data-aria-zh][data-aria-en]');
-  const languageButtons = document.querySelectorAll('[data-lang]');
   const menuButton = document.querySelector('[data-menu-toggle]');
   const siteNav = document.querySelector('[data-site-nav]');
   const clock = document.querySelector('[data-clock]');
   const year = document.querySelector('[data-year]');
   root.classList.add('js');
-
-  const setLanguage = (language) => {
-    const safeLanguage = language === 'en' ? 'en' : 'zh';
-    root.lang = safeLanguage === 'zh' ? 'zh-CN' : 'en';
-    body.dataset.language = safeLanguage;
-    translatable.forEach((element) => {
-      element.textContent = element.dataset[safeLanguage];
-    });
-    accessibleLabels.forEach((element) => {
-      element.setAttribute('aria-label', element.dataset[safeLanguage === 'zh' ? 'ariaZh' : 'ariaEn']);
-    });
-    languageButtons.forEach((button) => {
-      const isActive = button.dataset.lang === safeLanguage;
-      button.classList.toggle('is-active', isActive);
-      button.setAttribute('aria-pressed', String(isActive));
-    });
-    const title = safeLanguage === 'zh' ? body.dataset.titleZh : body.dataset.titleEn;
-    if (title) document.title = title;
-    try {
-      localStorage.setItem('brucy-language', safeLanguage);
-    } catch {
-      // Reading and switching languages must also work without local storage.
-    }
-  };
-  let savedLanguage;
-  try {
-    savedLanguage = localStorage.getItem('brucy-language');
-  } catch {
-    savedLanguage = null;
-  }
-  const preferredLanguage = navigator.language.toLowerCase().startsWith('zh') ? 'zh' : 'en';
-  setLanguage(['zh', 'en'].includes(savedLanguage) ? savedLanguage : preferredLanguage);
-  languageButtons.forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
 
   if (year) year.textContent = String(new Date().getFullYear());
   if (clock) {

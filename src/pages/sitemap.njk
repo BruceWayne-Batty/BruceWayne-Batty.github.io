@@ -1,0 +1,10 @@
+---
+permalink: sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{% for locale in locales %}{% for key, pageDefinition in pages %}
+  <url><loc>{{ pageDefinition.route | localePath(locale.code) | absoluteUrl }}</loc></url>{% endfor %}{% endfor %}{% for note in collections.publishedNotes %}
+  <url><loc>{{ note.data.slug | notePath(note.data.lang) | absoluteUrl }}</loc></url>{% endfor %}{% for archive in archives %}
+  <url><loc>{{ ('notes/' + archive.type + 's/' + archive.key) | localePath(archive.lang) | absoluteUrl }}</loc></url>{% endfor %}
+</urlset>

@@ -1,0 +1,21 @@
+---
+pagination:
+  data: archives
+  size: 1
+  alias: archive
+permalink: "{% if archive.lang == 'en' %}en/{% endif %}notes/{{ archive.type }}s/{{ archive.key }}/index.html"
+---
+{% set locale = locales[1] if archive.lang == 'en' else locales[0] %}{% set pageKey = 'notes' %}{% set lang = archive.lang %}{% if archive.type == 'tag' %}{% set archiveName = tagDefinitions[archive.key][lang] %}{% set archiveNotes = collections.publishedNotes | tagNotes(archive.key, lang) %}{% else %}{% set archiveName = authors[archive.key].name[lang] %}{% set archiveNotes = collections.publishedNotes | authorNotes(archive.key, lang) %}{% endif %}{% set archiveRoute = 'notes/' + archive.type + 's/' + archive.key %}{% set languageRoute = archiveRoute %}{% set canonicalPath = archiveRoute | localePath(lang) %}
+<!doctype html>
+<html lang="{{ locale.htmlLang }}"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{% if archive.type == 'tag' %}{% if lang == 'zh' %}Brucy Wu 关于 {{ archiveName }} 的文章。{% else %}Notes by Brucy Wu tagged {{ archiveName }}.{% endif %}{% else %}{% if lang == 'zh' %}{{ archiveName }} 发布的文章。{% else %}Notes published by {{ archiveName }}.{% endif %}{% endif %}">
+  <meta name="theme-color" content="#0b0c0c"><title>{{ archiveName }} — {% if lang == 'zh' %}杂谈{% else %}Notes{% endif %} — Brucy Wu</title>
+  <link rel="canonical" href="{{ canonicalPath | absoluteUrl }}"><link rel="alternate" hreflang="zh-CN" href="{{ archiveRoute | localePath('zh') | absoluteUrl }}"><link rel="alternate" hreflang="en" href="{{ archiveRoute | localePath('en') | absoluteUrl }}"><link rel="alternate" hreflang="x-default" href="{{ archiveRoute | localePath('zh') | absoluteUrl }}">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><meta property="og:type" content="website"><meta property="og:locale" content="{% if lang == 'zh' %}zh_CN{% else %}en_US{% endif %}"><meta property="og:title" content="{{ archiveName }} — Notes — Brucy Wu"><meta property="og:description" content="{% if lang == 'zh' %}{{ archiveName }} 分类下的文章。{% else %}Notes filed under {{ archiveName }}.{% endif %}"><meta property="og:url" content="{{ canonicalPath | absoluteUrl }}"><meta property="og:image" content="{{ site.url }}{{ site.image }}"><meta property="og:image:alt" content="Brucy Wu — Obsidian Terminal"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ archiveName }} — Notes — Brucy Wu"><meta name="twitter:description" content="{% if lang == 'zh' %}{{ archiveName }} 分类下的文章。{% else %}Notes filed under {{ archiveName }}.{% endif %}"><meta name="twitter:image" content="{{ site.url }}{{ site.image }}"><link rel="stylesheet" href="/assets/css/obsidian.css">
+</head><body>
+  <a class="skip-link" href="#main">{% if lang == 'zh' %}跳至正文{% else %}Skip to content{% endif %}</a>{% include "components/header.njk" %}
+  <main class="listing-page" id="main" tabindex="-1"><section class="notes section-shell"><header class="section-heading reveal"><div><span>03</span><code>{{ archive.type }}.{{ archive.key }}</code></div><h1 class="section-title">{{ archiveName }}</h1></header>
+  <div class="notes-list">{% for note in archiveNotes %}<a class="note-row reveal" href="{{ note.data.slug | notePath(lang) }}"><code>LOG / {{ note.data.logNumber | padNumber }}</code><h3>{{ note.data.title }}</h3><span>{{ note.data.category }} · {% if lang == 'zh' %}阅读{% else %}Read{% endif %} ↗</span></a>{% else %}<p class="empty-state">{% if lang == 'zh' %}这个分类暂时没有文章。{% else %}No notes in this archive yet.{% endif %}</p>{% endfor %}</div></section></main>
+  {% include "components/footer.njk" %}<script src="/assets/js/site.js" defer></script>
+</body></html>

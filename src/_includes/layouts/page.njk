@@ -1,0 +1,35 @@
+{% set lang = locale.code %}{% set meta = pages[pageKey] %}{% set canonicalPath = meta.route | localePath(lang) %}
+<!doctype html>
+<html lang="{{ locale.htmlLang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ meta.description[lang] }}">
+  <meta name="theme-color" content="#0b0c0c">
+  <title>{{ meta.title[lang] }}</title>
+  <link rel="canonical" href="{{ canonicalPath | absoluteUrl }}">
+  <link rel="alternate" hreflang="zh-CN" href="{{ meta.route | localePath('zh') | absoluteUrl }}">
+  <link rel="alternate" hreflang="en" href="{{ meta.route | localePath('en') | absoluteUrl }}">
+  <link rel="alternate" hreflang="x-default" href="{{ meta.route | localePath('zh') | absoluteUrl }}">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{% if lang == 'zh' %}zh_CN{% else %}en_US{% endif %}">
+  <meta property="og:title" content="{{ meta.title[lang] }}">
+  <meta property="og:description" content="{{ meta.description[lang] }}">
+  <meta property="og:url" content="{{ canonicalPath | absoluteUrl }}">
+  <meta property="og:image" content="{{ site.url }}{{ site.image }}">
+  <meta property="og:image:alt" content="{% if lang == 'zh' %}Brucy Wu — 黑曜终端，独立游戏与 AI 开发者{% else %}Brucy Wu — Obsidian Terminal, indie game and AI developer{% endif %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ meta.title[lang] }}">
+  <meta name="twitter:description" content="{{ meta.description[lang] }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.image }}">
+  <link rel="stylesheet" href="/assets/css/obsidian.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">{% if lang == 'zh' %}跳至正文{% else %}Skip to content{% endif %}</a>
+  {% include "components/header.njk" %}
+  {{ content | safe }}
+  {% include "components/footer.njk" %}
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

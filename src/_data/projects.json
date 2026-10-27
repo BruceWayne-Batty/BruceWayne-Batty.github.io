@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Slots Champion",
+    "longTitle": true,
+    "status": "ACTIVE",
+    "type": "INDIE GAME / ROGUELIKE",
+    "imageClass": "image-one",
+    "imageAlt": { "zh": "Slots Champion 元素转轮概念图，非实际游戏截图", "en": "Slots Champion elemental reels concept art, not a gameplay screenshot" },
+    "description": { "zh": "把牌组构筑塞进三组元素转轮：转、锁、重转，再把能量喂给卡牌。第一章已完整可玩，192 项测试全绿——游戏可以靠运气，代码最好别。", "en": "Deckbuilding through three elemental reels: spin, lock, reroll, then feed the energy into cards. Chapter One is fully playable, with 192 tests passing—luck belongs in the game, not the code." },
+    "stack": "GODOT 4 · C# · GDUNIT4"
+  },
+  {
+    "title": "NEW API Image MCP",
+    "longTitle": true,
+    "status": "UTILITY",
+    "type": "AI / MCP SERVER",
+    "imageClass": "image-two",
+    "imageAlt": { "zh": "NEW API Image MCP 协议路由与本地图片流程概念图", "en": "NEW API Image MCP protocol routing and local image workflow concept art" },
+    "description": { "zh": "让 MCP 客户端通过 OpenAI 或 Gemini 协议生成、编辑图片，并自动保存到本地。配置一次，多端共用——Key 藏在该藏的地方，不藏在 Git 历史里。", "en": "An MCP server that generates and edits images through OpenAI or Gemini protocols, then saves them locally. Configure it once and share it across clients—the key stays where secrets belong, not in Git history." },
+    "stack": "TYPESCRIPT · MCP · OPENAI / GEMINI",
+    "url": "https://github.com/BruceWayne-Batty/Local-Image-MCP"
+  },
+  {
+    "title": "Charity Token",
+    "status": "PROTOTYPE",
+    "type": "WEB3 / CHARITY",
+    "imageClass": "image-three",
+    "imageAlt": { "zh": "Charity Token 合约资金池与分配流程概念图", "en": "Charity Token smart-contract fund pool and distribution concept art" },
+    "description": { "zh": "把 ERC20 代币、ERC721 纪念 NFT 和资金池合约放进同一套慈善捐赠系统，支持本地与 BSC 测试网。善意可以上链，Gas 费还是得自己付。", "en": "A charity donation system combining an ERC20 token, ERC721 commemorative NFTs, and a fund-pool contract, with local and BSC testnet support. Good intentions can go on-chain; gas fees still cannot." },
+    "stack": "SOLIDITY · HARDHAT · ETHERS.JS"
+  }
+]

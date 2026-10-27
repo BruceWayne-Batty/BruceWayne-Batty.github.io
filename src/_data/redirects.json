@@ -1,0 +1,9 @@
+[
+  { "from": "projects.html", "to": "/projects/" },
+  { "from": "notes.html", "to": "/notes/" },
+  { "from": "notes-last-bug.html", "to": "/notes/last-bug/" },
+  { "from": "notes-ai-efficiency.html", "to": "/notes/ai-efficiency/" },
+  { "from": "notes-solo-development.html", "to": "/notes/solo-development/" },
+  { "from": "notes-app-store-review.html", "to": "/notes/app-store-review/" },
+  { "from": "notes-local-image-mcp.html", "to": "/notes/local-image-mcp/" }
+]

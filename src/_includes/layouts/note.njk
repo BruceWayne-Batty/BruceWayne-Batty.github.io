@@ -1,0 +1,62 @@
+{% set otherLang = 'en' if lang == 'zh' else 'zh' %}{% set canonicalPath = slug | notePath(lang) %}{% set alternate = collections.publishedNotes | translationFor(translationKey, otherLang) %}{% set previous = collections.publishedNotes | previousNote(page.inputPath, lang) %}{% set next = collections.publishedNotes | nextNote(page.inputPath, lang) %}{% set writer = authors[author] %}
+<!doctype html>
+<html lang="{% if lang == 'zh' %}zh-CN{% else %}en{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ description }}">
+  <meta name="theme-color" content="#0b0c0c">
+  <title>{{ title }} — Brucy Wu</title>
+  <link rel="canonical" href="{{ canonicalPath | absoluteUrl }}">
+  <link rel="alternate" hreflang="{% if lang == 'zh' %}zh-CN{% else %}en{% endif %}" href="{{ canonicalPath | absoluteUrl }}">
+  {% if alternate %}<link rel="alternate" hreflang="{% if otherLang == 'zh' %}zh-CN{% else %}en{% endif %}" href="{{ alternate.data.slug | notePath(otherLang) | absoluteUrl }}">{% endif %}
+  <link rel="alternate" hreflang="x-default" href="{{ slug | notePath('zh') | absoluteUrl if lang == 'zh' or alternate else canonicalPath | absoluteUrl }}">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="{% if lang == 'zh' %}zh_CN{% else %}en_US{% endif %}">
+  <meta property="og:title" content="{{ title }} — Brucy Wu">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:url" content="{{ canonicalPath | absoluteUrl }}">
+  <meta property="og:image" content="{{ site.url }}{{ site.image }}">
+  <meta property="og:image:alt" content="Brucy Wu — Obsidian Terminal">
+  <meta property="article:published_time" content="{{ date.toISOString() }}">
+  <meta property="article:modified_time" content="{{ updated.toISOString() }}">
+  {% for tag in noteTags %}<meta property="article:tag" content="{{ tagDefinitions[tag][lang] }}">{% endfor %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }} — Brucy Wu">
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.image }}">
+  <script type="application/ld+json">{{ title | blogPostingJson(description, lang, date, updated, canonicalPath, site.image, writer) | safe }}</script>
+  <link rel="stylesheet" href="/assets/css/obsidian.css">
+</head>
+<body class="article-page">
+  <a class="skip-link" href="#main">{% if lang == 'zh' %}跳至正文{% else %}Skip to content{% endif %}</a>
+  <header class="site-header article-header">
+    <a class="wordmark" href="{{ '' | localePath(lang) }}" aria-label="{% if lang == 'zh' %}Brucy Wu 首页{% else %}Brucy Wu home{% endif %}"><span>BW</span><i></i></a>
+    <a class="article-home" href="{{ 'notes' | localePath(lang) }}">{% if lang == 'zh' %}← 全部随笔{% else %}← All notes{% endif %}</a>
+    <div class="header-tools"><nav class="language-switch" aria-label="{% if lang == 'zh' %}语言切换{% else %}Language switch{% endif %}">
+      {% if lang == 'zh' %}<a class="is-active" aria-current="page" href="{{ canonicalPath }}" lang="zh-CN">中</a><span>/</span>{% if alternate %}<a href="{{ alternate.data.slug | notePath('en') }}" lang="en">EN</a>{% else %}<span class="language-unavailable" aria-disabled="true">EN 暂无翻译</span>{% endif %}
+      {% else %}{% if alternate %}<a href="{{ alternate.data.slug | notePath('zh') }}" lang="zh-CN">中</a>{% else %}<span class="language-unavailable" aria-disabled="true">ZH unavailable</span>{% endif %}<span>/</span><a class="is-active" aria-current="page" href="{{ canonicalPath }}" lang="en">EN</a>{% endif %}
+    </nav></div>
+  </header>
+  <main class="article-shell" id="main" tabindex="-1">
+    <article>
+      <header class="article-heading reveal">
+        <div class="article-meta"><code>LOG / {{ logNumber | padNumber }}</code><span>{{ category }}</span></div>
+        <h1>{{ title }}</h1>
+        <p class="article-deck">{{ deck }}</p>
+        <div class="article-meta"><span>{% if lang == 'zh' %}作者{% else %}By{% endif %} <a href="{{ ('notes/authors/' + author) | localePath(lang) }}">{{ writer.name[lang] }}</a></span><time datetime="{{ date.toISOString().slice(0, 10) }}">{{ date | displayDate(lang) }}</time></div>
+        <div class="article-tags">{% for tag in noteTags %}<a href="{{ ('notes/tags/' + tag) | localePath(lang) }}">#{{ tagDefinitions[tag][lang] }}</a>{% endfor %}</div>
+      </header>
+      <div class="article-body">{{ content | safe }}</div>
+    </article>
+    <nav class="article-pagination" aria-label="{% if lang == 'zh' %}文章导航{% else %}Article navigation{% endif %}">
+      {% if previous %}<a href="{{ previous.data.slug | notePath(lang) }}">← {% if lang == 'zh' %}上一篇{% else %}Previous{% endif %}：{{ previous.data.title }}</a>{% else %}<span></span>{% endif %}
+      {% if next %}<a href="{{ next.data.slug | notePath(lang) }}">{% if lang == 'zh' %}下一篇{% else %}Next{% endif %}：{{ next.data.title }} →</a>{% else %}<a href="{{ 'notes' | localePath(lang) }}">{% if lang == 'zh' %}全部随笔{% else %}All notes{% endif %} →</a>{% endif %}
+    </nav>
+    <a class="article-back" href="{{ 'notes' | localePath(lang) }}">{% if lang == 'zh' %}← 返回随笔列表{% else %}← Back to notes{% endif %}</a>
+  </main>
+  <footer class="article-footer"><span>© <span data-year>2026</span> BRUCY WU</span><a href="{{ site.github }}">GITHUB ↗</a></footer>
+  <script src="/assets/js/site.js" defer></script>
+</body>
+</html>

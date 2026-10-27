@@ -1,0 +1,11 @@
+---
+pagination:
+  data: redirects
+  size: 1
+  alias: redirect
+permalink: "{{ redirect.from }}"
+noindex: true
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url={{ redirect.to }}"><link rel="canonical" href="{{ redirect.to | absoluteUrl }}"><title>页面已移动 — Brucy Wu</title></head><body><p>页面已移动：<a href="{{ redirect.to }}">继续访问 / Continue</a></p></body></html>

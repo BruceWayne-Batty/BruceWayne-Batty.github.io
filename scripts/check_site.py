@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Check the static site without installing third-party dependencies."""
+"""Validate the generated multilingual static site without online requests."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
+import json
 import re
 import struct
 import sys
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parents[1]
+PROJECT = Path(__file__).resolve().parents[1]
+ROOT = PROJECT / "_site"
 HOST = "brucewayne-batty.github.io"
 errors = []
 
@@ -19,143 +21,164 @@ class Document(HTMLParser):
         self.path = path
         self.ids = set()
         self.references = []
-        self.h1_count = 0
         self.meta = {}
-        self.project_count = 0
-        self.note_links = []
-        self.view_more_links = []
+        self.links = []
+        self.h1_count = 0
+        self.html_lang = None
+        self.canonical = None
+        self.alternates = {}
+        self.json_ld = []
+        self._json_ld = False
+        self._json_ld_text = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        classes = attrs.get("class", "").split()
-        if tag == "article" and "project-card" in classes:
-            self.project_count += 1
-        if tag == "a" and "note-row" in classes:
-            self.note_links.append(attrs.get("href"))
-        if tag == "a" and "button" in classes and attrs.get("href") in ("projects.html", "notes.html"):
-            self.view_more_links.append(attrs["href"])
+        if tag == "html":
+            self.html_lang = attrs.get("lang")
+        if tag == "h1":
+            self.h1_count += 1
         identifier = attrs.get("id")
         if identifier:
             if identifier in self.ids:
-                errors.append(f"{self.path.name}: duplicate id {identifier}")
+                errors.append(f"{self.path.relative_to(ROOT)}: duplicate id {identifier}")
             self.ids.add(identifier)
-        if tag == "h1":
-            self.h1_count += 1
         for key in ("href", "src"):
-            if key in attrs:
+            if attrs.get(key):
                 self.references.append(attrs[key])
+        if tag == "a":
+            self.links.append((attrs.get("href", ""), set(attrs.get("class", "").split())))
         if tag == "meta":
-            key = attrs.get("property") or attrs.get("name")
-            self.meta[key] = attrs.get("content", "")
-            if key in ("og:image", "twitter:image"):
-                self.references.append(attrs.get("content", ""))
-        for pair in (("data-zh", "data-en"), ("data-aria-zh", "data-aria-en")):
-            if any(key in attrs for key in pair) and not all(attrs.get(key, "").strip() for key in pair):
-                errors.append(f"{self.path.name}: incomplete bilingual attributes on <{tag}>")
-        if "aria-controls" in attrs:
-            self.references.extend("#" + item for item in attrs["aria-controls"].split())
+            key = attrs.get("property") or attrs.get("name") or attrs.get("http-equiv")
+            if key:
+                self.meta[key.lower()] = attrs.get("content", "")
+        if tag == "link":
+            if attrs.get("rel") == "canonical":
+                self.canonical = attrs.get("href")
+            elif attrs.get("rel") == "alternate" and attrs.get("hreflang"):
+                self.alternates[attrs["hreflang"]] = attrs.get("href")
+        if tag == "script" and attrs.get("type") == "application/ld+json":
+            self._json_ld = True
+            self._json_ld_text = []
+
+    def handle_endtag(self, tag):
+        if tag == "script" and self._json_ld:
+            self.json_ld.append("".join(self._json_ld_text))
+            self._json_ld = False
+
+    def handle_data(self, data):
+        if self._json_ld:
+            self._json_ld_text.append(data)
 
     handle_startendtag = handle_starttag
 
 
+if not ROOT.is_dir():
+    errors.append("_site is missing; run npm run build first")
+
 documents = {}
-for path in ROOT.glob("*.html"):
+for path in ROOT.rglob("*.html") if ROOT.is_dir() else []:
     document = Document(path)
     document.feed(path.read_text(encoding="utf-8"))
     documents[path.resolve()] = document
-    if document.h1_count != 1:
-        errors.append(f"{path.name}: expected exactly one h1")
+    if document.h1_count != 1 and path.name != "404.html" and "noindex" not in document.meta.get("robots", ""):
+        errors.append(f"{path.relative_to(ROOT)}: expected exactly one h1")
 
 
-def check_reference(source, reference):
-    if not reference or reference == "#":
-        errors.append(f"{source.name}: empty or placeholder reference")
-        return
+def target_for(source, reference):
     url = urlsplit(reference)
     if url.scheme in ("mailto", "tel", "data"):
-        return
+        return None, url.fragment
     if url.netloc and url.netloc.lower() != HOST:
-        return  # External destinations need a separate online check.
+        return None, url.fragment
     if url.scheme and url.scheme not in ("https", "http"):
-        errors.append(f"{source.name}: unsupported URL {reference}")
-        return
-    path = unquote(url.path)
-    if not path:
+        errors.append(f"{source.relative_to(ROOT)}: unsupported URL {reference}")
+        return None, url.fragment
+    url_path = unquote(url.path)
+    if not url_path:
         target = source
-    elif path.startswith("/"):
-        target = ROOT / path.lstrip("/")
+    elif url_path.startswith("/"):
+        target = ROOT / url_path.lstrip("/")
     else:
-        target = source.parent / path
+        target = source.parent / url_path
+    if url_path.endswith("/") or target.is_dir():
+        target /= "index.html"
     target = target.resolve()
-    if not target.is_relative_to(ROOT):
-        errors.append(f"{source.name}: reference outside site: {reference}")
-        return
-    if target.is_dir():
-        target = target / "index.html"
-    if not target.is_file():
-        errors.append(f"{source.name}: missing resource {reference}")
-    elif url.fragment:
-        document = documents.get(target)
-        if document and unquote(url.fragment) not in document.ids:
-            errors.append(f"{source.name}: missing anchor {reference}")
+    try:
+        target.relative_to(ROOT)
+    except ValueError:
+        errors.append(f"{source.relative_to(ROOT)}: reference outside site: {reference}")
+        return None, url.fragment
+    return target, unquote(url.fragment)
 
 
 for source, document in documents.items():
     for reference in document.references:
-        check_reference(source, reference)
-for source in (ROOT / "assets/css").glob("*.css"):
-    pattern = r'''url\(\s*(?:"([^"]*)"|'([^']*)'|([^\s)]+))\s*\)'''
-    for match in re.finditer(pattern, source.read_text(), re.IGNORECASE):
-        check_reference(source, next(value for value in match.groups() if value is not None))
+        target, fragment = target_for(source, reference)
+        if target is None:
+            continue
+        if not target.is_file():
+            errors.append(f"{source.relative_to(ROOT)}: missing resource {reference}")
+        elif fragment and target.suffix == ".html":
+            target_document = documents.get(target)
+            if target_document and fragment not in target_document.ids:
+                errors.append(f"{source.relative_to(ROOT)}: missing anchor {reference}")
 
-for source, document in documents.items():
-    if source.name == "404.html":
+    noindex = "noindex" in document.meta.get("robots", "")
+    if not noindex:
+        if document.html_lang not in ("zh-CN", "en"):
+            errors.append(f"{source.relative_to(ROOT)}: invalid or missing html lang")
+        for key in ("description", "og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:title", "twitter:description", "twitter:image"):
+            if not document.meta.get(key):
+                errors.append(f"{source.relative_to(ROOT)}: missing metadata {key}")
+        if not document.canonical:
+            errors.append(f"{source.relative_to(ROOT)}: missing canonical")
+        if document.meta.get("og:url") != document.canonical:
+            errors.append(f"{source.relative_to(ROOT)}: og:url differs from canonical")
+        if document.meta.get("og:image") != document.meta.get("twitter:image"):
+            errors.append(f"{source.relative_to(ROOT)}: share preview images differ")
+        if "x-default" not in document.alternates:
+            errors.append(f"{source.relative_to(ROOT)}: missing x-default alternate")
+        for alternate in document.alternates.values():
+            target, _ = target_for(source, alternate)
+            if target is not None and not target.is_file():
+                errors.append(f"{source.relative_to(ROOT)}: alternate does not exist {alternate}")
+    for payload in document.json_ld:
+        try:
+            parsed = json.loads(payload)
+            if parsed.get("@type") == "BlogPosting" and not all(parsed.get(key) for key in ("headline", "datePublished", "author", "url")):
+                errors.append(f"{source.relative_to(ROOT)}: incomplete BlogPosting JSON-LD")
+        except json.JSONDecodeError as error:
+            errors.append(f"{source.relative_to(ROOT)}: invalid JSON-LD: {error}")
+
+
+def document_at(route):
+    return documents.get((ROOT / route.lstrip("/") / "index.html").resolve())
+
+
+for language, prefix in (("zh", ""), ("en", "en/")):
+    home = document_at(prefix)
+    notes = document_at(f"{prefix}notes")
+    if not home or not notes:
+        errors.append(f"missing {language} home or notes listing")
         continue
-    for key in ("description", "og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:image"):
-        if not document.meta.get(key):
-            errors.append(f"{source.name}: missing metadata {key}")
-    if document.meta.get("og:image") != document.meta.get("twitter:image"):
-        errors.append(f"{source.name}: share preview images differ")
-
-home = documents.get((ROOT / "index.html").resolve())
-projects = documents.get((ROOT / "projects.html").resolve())
-notes = documents.get((ROOT / "notes.html").resolve())
-if not all((home, projects, notes)):
-    errors.append("Missing home, projects or notes page")
-else:
-    if home.project_count != 1:
-        errors.append("index.html: expected exactly one project preview")
-    if projects.project_count < home.project_count:
-        errors.append("projects.html: incomplete project list")
-    if len(home.note_links) != min(3, len(notes.note_links)):
-        errors.append("index.html: expected three note previews (or all if fewer than three)")
-    if len(set(home.note_links)) != len(home.note_links):
-        errors.append("index.html: duplicate note previews")
-    if not set(home.note_links).issubset(notes.note_links):
-        errors.append("index.html: note previews missing from notes.html")
-    if set(home.view_more_links) != {"projects.html", "notes.html"}:
-        errors.append("index.html: missing Projects or Notes View more button")
-    for name, document in (("index.html", home), ("projects.html", projects), ("notes.html", notes)):
-        if not {"projects.html", "notes.html"}.issubset(document.references):
-            errors.append(f"{name}: missing standalone page navigation")
-    for name, document in (("projects.html", projects), ("notes.html", notes)):
-        if "index.html#about" not in document.references:
-            errors.append(f"{name}: About must link to the homepage section")
+    home_notes = [href for href, classes in home.links if "note-row" in classes]
+    listed_notes = [href for href, classes in notes.links if "note-row" in classes]
+    if len(home_notes) != min(3, len(listed_notes)):
+        errors.append(f"{language} homepage must show the latest three available notes")
+    if not set(home_notes).issubset(listed_notes):
+        errors.append(f"{language} homepage notes are not present in its notes listing")
 
 try:
     sitemap = ET.parse(ROOT / "sitemap.xml")
-    locations = sitemap.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
-    if not locations:
-        errors.append("sitemap.xml: no URLs")
-    for location in locations:
-        url = urlsplit(location.text or "")
-        if url.scheme != "https" or url.netloc != HOST:
-            errors.append("sitemap.xml: unexpected domain or protocol")
-        check_reference(ROOT / "sitemap.xml", location.text or "")
+    locations = {node.text for node in sitemap.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc")}
+    canonical_urls = {document.canonical for document in documents.values() if document.canonical and "noindex" not in document.meta.get("robots", "")}
+    if locations != canonical_urls:
+        errors.append(f"sitemap URLs differ from canonical pages (missing {canonical_urls - locations}, extra {locations - canonical_urls})")
 except (ET.ParseError, OSError) as error:
     errors.append(f"sitemap.xml: {error}")
 
-if f"Sitemap: https://{HOST}/sitemap.xml" not in (ROOT / "robots.txt").read_text():
+robots = (ROOT / "robots.txt").read_text(encoding="utf-8") if (ROOT / "robots.txt").is_file() else ""
+if f"Sitemap: https://{HOST}/sitemap.xml" not in robots:
     errors.append("robots.txt: missing sitemap declaration")
 
 try:
@@ -165,7 +188,14 @@ try:
 except (OSError, struct.error) as error:
     errors.append(f"social-card.png: {error}")
 
+for path in documents:
+    text = path.read_text(encoding="utf-8")
+    if re.search(r"data-(?:zh|en|aria-zh|aria-en)=", text) and path.name != "404.html":
+        errors.append(f"{path.relative_to(ROOT)}: unresolved bilingual attributes")
+    if text.lower().count("<!doctype html>") != 1:
+        errors.append(f"{path.relative_to(ROOT)}: expected one doctype")
+
 if errors:
     print("Site check FAILED:\n" + "\n".join(f"- {error}" for error in errors))
     sys.exit(1)
-print(f"Site check passed: {len(documents)} HTML pages, local resources, anchors, bilingual attributes, SEO and sharing assets.")
+print(f"Site check passed: {len(documents)} HTML pages, multilingual SEO, local links, archives, structured data and sharing assets.")
